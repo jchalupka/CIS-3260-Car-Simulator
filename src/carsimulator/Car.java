@@ -28,14 +28,6 @@ public class Car {
         this.location = location;
     }
 
-    public double getDirection() {
-        return direction;
-    }
-    
-    public void setDirection(double direction) {
-        this.direction = direction;
-    }
-
     public int getSpeed() {
         return speed;
     }
