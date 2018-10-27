@@ -1,6 +1,7 @@
 package carsimulator.carcontrols;
 
 public class Gas {
+
     private final int maxGasAmount;
     private int currentGasAmount;
     private final int siphonAmount;
@@ -18,15 +19,20 @@ public class Gas {
     public int getSiphonAmount() {
         return siphonAmount;
     }
-    
+
     /**
      * Only refueling to max will be allowed.
      */
     public void refuel() {
         this.currentGasAmount = this.maxGasAmount;
     }
-    
+
     public void siphon() {
-        this.currentGasAmount -= siphonAmount;
+        // Check if there is gas left to siphon
+        if (this.currentGasAmount - siphonAmount >= 0) {
+            this.currentGasAmount -= siphonAmount;
+        } else {
+            this.currentGasAmount = 0;
+        }
     }
 }
