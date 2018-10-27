@@ -5,7 +5,7 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
+import org.junit.Assert;
 
 public class DirectionTest {
 
@@ -41,12 +41,12 @@ public class DirectionTest {
         double val = 1 * Math.PI;   
         double expResult = val;
         double result = Direction.handleWrapAround(val);
-        assertEquals(expResult, result, 0.0);
+        Assert.assertEquals(expResult, result, 0.0);
         
         val = 3*Math.PI;
         expResult = 1*Math.PI;
         result = Direction.handleWrapAround(val);
-        assertEquals(expResult, result, 0.01);
+        Assert.assertEquals(expResult, result, 0.01);
     }
 
     /**
@@ -59,7 +59,7 @@ public class DirectionTest {
         double turnAmount = 0.1;
         double expResult = 0.1;
         double result = instance.increase(turnAmount);
-        assertEquals(expResult, result, 0.01);
+        Assert.assertEquals(expResult, result, 0.01);
     }
 
     /**
@@ -72,7 +72,7 @@ public class DirectionTest {
         double turnAmount = 0.1;
         double expResult = (2 * Math.PI) - 0.1;
         double result = instance.decrease(turnAmount);
-        assertEquals(expResult, result, 0.01);
+        Assert.assertEquals(expResult, result, 0.01);
     }
 
 }

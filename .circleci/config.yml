@@ -5,8 +5,12 @@ jobs:
       - image: circleci/java:8-jdk
     steps:
       - checkout
-      - run:
-         name: Deploy
-         command: |
-           ant -f . -Dnb.internal.action.name=test -Dignore.failing.tests=true -Dnb.wait.for.caches=true test
+      - restore_cache: # restore the saved cache after the first run or if `pom.xml` has changed
+          key: circleci-project-{{ checksum "build.xml" }}
+      - run: ant -f . -Dnb.internal.action.name=build jar 
+      - save_cache: # saves the project dependencies
+          paths:
+            - ~/.m2
+          key: circleci-project-{{ checksum "build.xml" }}
+      - run: ant -f . -Dnb.internal.action.name=test -Dignore.failing.tests=true -Dnb.wait.for.caches=true test
 
