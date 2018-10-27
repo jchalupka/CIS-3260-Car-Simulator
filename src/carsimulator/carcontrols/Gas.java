@@ -27,12 +27,28 @@ public class Gas {
         this.currentGasAmount = this.maxGasAmount;
     }
 
+    /**
+     * Making this it's own function because I'm assuming it's going to have
+     * special functionality later (talking to view).
+     *
+     * @param amount
+     */
+    public void useGas(int amount) {
+        // TODO send notification to view to update the fuel guage.
+        this.removeGas(amount);
+    }
+
+    /**
+     * Removes fuel by the siphon amount.
+     */
     public void siphon() {
-        // Check if there is gas left to siphon
-        if (this.currentGasAmount - siphonAmount >= 0) {
-            this.currentGasAmount -= siphonAmount;
-        } else {
-            this.currentGasAmount = 0;
-        }
+        this.removeGas(siphonAmount);
+    }
+
+    /**
+     * Removes fuel (only if there is fuel to remove).
+     */
+    private void removeGas(int amount) {
+        this.currentGasAmount = Math.max(0, this.currentGasAmount - amount);
     }
 }
