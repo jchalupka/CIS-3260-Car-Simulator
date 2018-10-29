@@ -1,8 +1,13 @@
 package carsimulator;
 
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * Car is data model of the car.
+ */
 public class Car {
+    // Simple logger to log events
     private static final Logger logger = Logger.getLogger(Car.class.getName());
     
     private Location location;
@@ -10,31 +15,60 @@ public class Car {
     private int speed;
     private Gas gas;
 
-    // TODO add the rest of the variables here as their class is implemented
+    /**
+     * 
+     * @param direction
+     * @param gas 
+     */
     public Car(Direction direction, Gas gas) {
+        // TODO add the rest of the variables here as their class is implemented
         this.direction = direction;
         this.gas = gas;
+        
+        // TODO this might not be the correct way to print it.
+        logger.log(Level.INFO, "Created a new car: ", this);
     }
     
     /********************************************
      * Getters and Setters
      ********************************************/
-
+    /**
+     * Gets the cars current location on the map.
+     * 
+     * @return 
+     */
     public Location getLocation() {
-        return location;
+        logger.log(Level.INFO, "Location: ", this.location);
+        return this.location;
     }
     
-    // Going to need to initially set the location
+    
+    /**
+     * setLocation sets the cars current location on the map.
+     * 
+     * @param location 
+     */
     public void setLocation(Location location) {
         this.location = location;
+        logger.log(Level.INFO, "Location Updated: ", this.location);
     }
 
+    /**
+     * getSpeed gets the cars current speed.
+     * @return 
+     */
     public int getSpeed() {
-        return speed;
+        logger.log(Level.INFO, "Speed: ", this.speed);
+        return this.speed;
     }
     
+    /**
+     * getCurrentGasAmount gets the current amount of gas in the car.
+     * @return 
+     */
     public int getCurrentGasAmount() {
-        return gas.getCurrentGasAmount();
+        logger.log(Level.INFO, "Gas: ", this.gas.getCurrentGasAmount());
+        return this.gas.getCurrentGasAmount();
     }
     /********************************************
      * End of Getters and Setters
