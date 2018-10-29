@@ -5,6 +5,7 @@
  */
 package carsimulator.carcontrols;
 
+import carsimulator.Gas;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

@@ -1,4 +1,4 @@
-package carsimulator.carcontrols;
+package carsimulator;
 
 public class Gas {
 
