@@ -6,24 +6,25 @@ public class Car {
     private static final Logger logger = Logger.getLogger(Car.class.getName());
     
     private Location location;
-    /**
-     * TODO this needs to be contained within the range
-     * 0 to 2pi, and then wrap around.  
-     * There might already be something in Java for this...
-     */
-    private double direction;
+    private Direction direction;
     private int speed;
-    private int fuelLevel;
+    private Gas gas;
 
+    // TODO add the rest of the variables here as their class is implemented
+    public Car(Direction direction, Gas gas) {
+        this.direction = direction;
+        this.gas = gas;
+    }
+    
     /********************************************
      * Getters and Setters
      ********************************************/
-    
-    
+
     public Location getLocation() {
         return location;
     }
     
+    // Going to need to initially set the location
     public void setLocation(Location location) {
         this.location = location;
     }
@@ -32,17 +33,8 @@ public class Car {
         return speed;
     }
     
-    public void setSpeed(int speed) {
-        this.speed = speed;
-    }
-
-    
-    public int getFuelLevel() {
-        return fuelLevel;
-    }
-    
-    public void setFuelLevel(int fuelLevel) {
-        this.fuelLevel = fuelLevel;
+    public int getCurrentGasAmount() {
+        return gas.getCurrentGasAmount();
     }
     /********************************************
      * End of Getters and Setters
