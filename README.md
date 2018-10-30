@@ -39,8 +39,8 @@ Also note that completed just means the basic funcionality is completed, and IN_
 | Pedals        | NOT_STARTED  :apple: |
 | Gas           | COMPLETED    :green_apple: |
 | CarUI         | NOT_STARTED  :apple: |
-| Map           | NOT_STARTED  :apple: |
-| Environment   | NOT_STARTED  :apple: |
+| Map           | IN_PROGRESS  :lemon: |
+| Environment   | IN_PROGRESS  :lemon: |
 | Speedometer   | NOT_STARTED  :apple: |
 | Compass       | NOT_STARTED  :apple: |
 | OdometerView  | NOT_STARTED  :apple: |
