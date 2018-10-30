@@ -14,7 +14,7 @@ Group project for CIS*3260 Software Design IV.
 ### Sprint 1 Tasks
 - [x] Create Github Repository
 - [x] Create project on Netbeans and everyone make sure they can develop on it from their machines.
-- [ ] Research which graphics library to use
+- [x] Research which graphics library to use
 - [ ] Which order to tackle completing the classes?  Should the View section be done last? Or should the view/controller be done first.
 - [x] Create a prototype of the map with paint (or some sketching program)
 - [ ] Determine appropriate scales for everything. (This should probably go in the drive)
