@@ -13,14 +13,43 @@ Group project for CIS*3260 Software Design IV.
 
 ### Sprint 1 Tasks
 - [x] Create Github Repository
-- [ ] Create project on Netbeans and everyone make sure they can develop on it from their machines.
+- [x] Create project on Netbeans and everyone make sure they can develop on it from their machines.
 - [ ] Research which graphics library to use
 - [ ] Which order to tackle completing the classes?  Should the View section be done last? Or should the view/controller be done first.
-- [ ] Create a prototype of the map with paint (or some sketching program)
+- [x] Create a prototype of the map with paint (or some sketching program)
 - [ ] Determine appropriate scales for everything. (This should probably go in the drive)
 - [ ] We're going to implement the map as a grid.  How big should the boxes be?
 - [ ] How big should the car be?
 - [ ] How big should the road be?  Road could be two pixels.
-- [ ] Start to implement each of the controller classes
+- [x] Start to implement each of the controller classes
+
+#### Status of each class
+Mark the status with [NOT_STARTED :apple:, IN_PROGRESS :lemon:, COMPLETED :green_apple:]
+Also note that completed just means the basic funcionality is completed, and IN_PROGRESS means there is an open branch currently working on this functionality.
+
+| Name          | Status        |
+| ------------- | ------------- |
+| Car           | NOT_STARTED  :apple: |
+| CarControls   | NOT_STARTED  :apple: |
+| Steering      | COMPLETED    :green_apple: |
+| InternalTemperatureControl  | NOT_STARTED :apple:|
+| Direction     | COMPLETED :green_apple:    |
+| Odometer      | NOT_STARTED  :apple: |
+| GearBox       | NOT_STARTED  :apple: |
+| Pedals        | NOT_STARTED  :apple: |
+| Gas           | COMPLETED    :green_apple: |
+| CarUI         | NOT_STARTED  :apple: |
+| Map           | NOT_STARTED  :apple: |
+| Environment   | NOT_STARTED  :apple: |
+| Speedometer   | NOT_STARTED  :apple: |
+| Compass       | NOT_STARTED  :apple: |
+| OdometerView  | NOT_STARTED  :apple: |
+| FuelGuage     | NOT_STARTED  :apple: |
+| Temperature   | NOT_STARTED  :apple: |
+| Accelerometer | NOT_STARTED  :apple: |
+
+
+
+
 
 ---
