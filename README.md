@@ -32,10 +32,10 @@ Also note that completed just means the basic funcionality is completed, and IN_
 | Car           | NOT_STARTED  :apple: |
 | CarControls   | NOT_STARTED  :apple: |
 | Steering      | COMPLETED    :green_apple: |
-| InternalTemperatureControl  | NOT_STARTED :apple:|
+| InternalTemperatureControl  | IN_PROGRESS :lemon:|
 | Direction     | COMPLETED :green_apple:    |
-| Odometer      | NOT_STARTED  :apple: |
-| GearBox       | NOT_STARTED  :apple: |
+| Odometer      | IN_PROGRESS :lemon: |
+| GearBox       | IN_PROGRESS :lemon: |
 | Pedals        | COMPLETED    :green_apple: |
 | Gas           | COMPLETED    :green_apple: |
 | CarUI         | NOT_STARTED  :apple: |
@@ -44,7 +44,7 @@ Also note that completed just means the basic funcionality is completed, and IN_
 | Speedometer   | NOT_STARTED  :apple: |
 | Compass       | NOT_STARTED  :apple: |
 | OdometerView  | NOT_STARTED  :apple: |
-| FuelGuage     | IN_PROGRESS  :lemon: |
+| FuelGuage     | NOT_STARTED  :apple: |
 | Temperature   | NOT_STARTED  :apple: |
 | Accelerometer | NOT_STARTED  :apple: |
 
