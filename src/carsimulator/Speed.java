@@ -43,7 +43,7 @@ public class Speed {
      * @param speed_delta
      */
     public void increaseSpeed(int speed_delta) {
-        logger.log(Level.INFO, "Increasing speed by %d", speed_delta);
+        logger.log(Level.INFO, "Increasing speed by {0}", speed_delta);
         this.speed = Math.min(MAX_SPEED, this.speed + speed_delta);
     }
 
@@ -54,7 +54,7 @@ public class Speed {
      * @param speed_delta
      */
     public void decreaseSpeed(int speed_delta) {
-        logger.log(Level.INFO, "Decreasing speed by %d", speed_delta);
+        logger.log(Level.INFO, "Decreasing speed by {0}", speed_delta);
         this.speed = Math.max(MIN_SPEED, this.speed + speed_delta);
     }
 }

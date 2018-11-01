@@ -56,7 +56,7 @@ public class Gas {
      * @param amount
      */
     public void useGas(int amount) {
-        logger.log(Level.INFO, "Decreased gas by", amount);
+        logger.log(Level.INFO, "Decreased gas by {0}", amount);
         // TODO send notification to view to update the fuel guage.
         this.removeGas(amount);
     }
