@@ -12,8 +12,9 @@
     
     <path id="classpath">
         <pathelement location="${bin.dir}"/>
-        <fileset dir="${junit.dir}" includes="**/*.jar"/>
-        <fileset dir="${mockito}" includes="**/*.jar"/>
+        <!-- For some reason these lines are causing issues when I go to run tests, so I just commented them out.  Putting this comment here incase we have issues with it later -->
+        <!--<fileset dir="${junit.dir}" includes="**/*.jar"/>-->
+        <!--<fileset dir="${mockito}" includes="**/*.jar"/>-->
     </path>
     
     <import file="nbproject/build-impl.xml"/>
