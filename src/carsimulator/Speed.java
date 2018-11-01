@@ -1,5 +1,6 @@
 package carsimulator;
 
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Speed {
@@ -19,6 +20,7 @@ public class Speed {
      * speed will be set to zero upon initialization.
      */
     public Speed() {
+        logger.log(Level.INFO, "Created new Speed object.");
         this.speed = 0;
     }
 
@@ -41,6 +43,7 @@ public class Speed {
      * @param speed_delta
      */
     public void increaseSpeed(int speed_delta) {
+        logger.log(Level.INFO, "Increasing speed by %d", speed_delta);
         this.speed = Math.min(MAX_SPEED, this.speed + speed_delta);
     }
 
@@ -51,6 +54,7 @@ public class Speed {
      * @param speed_delta
      */
     public void decreaseSpeed(int speed_delta) {
-        this.speed -= Math.max(MIN_SPEED, this.speed + speed_delta);;
+        logger.log(Level.INFO, "Decreasing speed by %d", speed_delta);
+        this.speed = Math.max(MIN_SPEED, this.speed + speed_delta);
     }
 }

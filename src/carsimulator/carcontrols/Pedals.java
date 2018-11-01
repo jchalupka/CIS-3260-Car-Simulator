@@ -2,6 +2,7 @@ package carsimulator.carcontrols;
 
 import java.util.logging.Logger;
 import carsimulator.Speed;
+import java.util.logging.Level;
 
 public class Pedals {
 
@@ -17,15 +18,18 @@ public class Pedals {
 
     /**
      * Speed is the speed of the car
+     * @param speed
      */
-    public Pedals() {
-        this.speed = new Speed();
+    public Pedals(Speed speed) {
+        logger.log(Level.INFO, "Created a new pedals object");
+        this.speed = speed;
     }
 
     /**
      * coast decreases speed as if coasting by NATURAL_DESCELERATION_SPEED
      */
     public void coast() {
+        logger.log(Level.INFO, "Coasting");
         this.speed.decreaseSpeed(NATURAL_DESCELERATION_SPEED);
     }
 
@@ -33,6 +37,7 @@ public class Pedals {
      * brake decelerates the car by BRAKE_DESCELERATION_SPEED
      */
     public void brake() {
+        logger.log(Level.INFO, "Braking");
         this.speed.decreaseSpeed(BRAKE_DESCELERATION_SPEED);
     }
 
@@ -40,6 +45,7 @@ public class Pedals {
      * accelerate accelerates the car by ACCELERATION_SPEED
      */
     public void accelerate() {
+        logger.log(Level.INFO, "Accelerating");
         this.speed.increaseSpeed(ACCELERATION_SPEED);
     }
 }

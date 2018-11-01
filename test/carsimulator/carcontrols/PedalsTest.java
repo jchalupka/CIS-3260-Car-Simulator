@@ -37,7 +37,7 @@ public class PedalsTest {
     @Before
     public void setUp() {
         speed = Mockito.mock(Speed.class);
-        instance = new Pedals();
+        instance = new Pedals(speed);
     }
     
     @After
@@ -68,6 +68,6 @@ public class PedalsTest {
     @Test
     public void testAccelerate() {
         instance.accelerate();
-        Mockito.verify(speed).decreaseSpeed(Pedals.ACCELERATION_SPEED);
+        Mockito.verify(speed).increaseSpeed(Pedals.ACCELERATION_SPEED);
     }
 }
