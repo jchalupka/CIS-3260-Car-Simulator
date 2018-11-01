@@ -30,7 +30,7 @@ Also note that completed just means the basic funcionality is completed, and IN_
 | Name          | Status        |
 | ------------- | ------------- |
 | Car           | NOT_STARTED  :apple: |
-| CarControls   | NOT_STARTED  :apple: |
+| CarControls   | IN_PROGRESS  :lemon: |
 | Steering      | COMPLETED    :green_apple: |
 | InternalTemperatureControl  | IN_PROGRESS :lemon:|
 | Direction     | COMPLETED :green_apple:    |
