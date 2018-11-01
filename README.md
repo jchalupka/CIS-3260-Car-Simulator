@@ -44,7 +44,7 @@ Also note that completed just means the basic funcionality is completed, and IN_
 | Speedometer   | NOT_STARTED  :apple: |
 | Compass       | NOT_STARTED  :apple: |
 | OdometerView  | NOT_STARTED  :apple: |
-| FuelGuage     | NOT_STARTED  :apple: |
+| FuelGuage     | IN_PROGRESS  :lemon: |
 | Temperature   | NOT_STARTED  :apple: |
 | Accelerometer | NOT_STARTED  :apple: |
 
