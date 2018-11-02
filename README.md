@@ -47,7 +47,7 @@ Also note that completed just means the basic funcionality is completed, and IN_
 | FuelGuage     | NOT_STARTED  :apple: |
 | Temperature   | IN_PROGRESS  :lemon: |
 | Accelerometer | NOT_STARTED  :apple: |
-| CarKeyListener  | COMPLETED :lemon:  | 
+| CarKeyListener  | IN_PROGRESS :lemon:  | 
 
 
 
