@@ -2,12 +2,17 @@ package carsimulator;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.Frame;
 
 /**
  * This will implement all of the key event listeners for the car (I think)
  */
 public class CarKeyListener implements KeyListener {
 
+    public CarKeyListener(Frame frame) {
+        frame.addKeyListener(this);
+    }
+    
     /**
      * The types of action the user would like to perform on the car.
      */
@@ -58,6 +63,7 @@ public class CarKeyListener implements KeyListener {
         }
         
         // Perform the appropriate action on the controller
+        System.out.println(action);
     }
 
     @Override
@@ -68,6 +74,7 @@ public class CarKeyListener implements KeyListener {
         }
         
         // Perform the appropriate action on the controller
+        System.out.println(action);
     }
 
     @Override
@@ -78,10 +85,17 @@ public class CarKeyListener implements KeyListener {
         }
         
         // Perform the appropriate action on the controller
+        System.out.println(action);
     }
 
     public static void main(String[] args) {
-        
+        // TODO when this is actually used, frame will be the UI
+        Frame frame = new Frame();
+        frame.setVisible(true);
+
+        // Give the CarKeyListener the frame
+        new CarKeyListener(frame);
+
     }
 
 }
