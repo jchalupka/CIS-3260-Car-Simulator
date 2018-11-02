@@ -5,7 +5,7 @@ import java.awt.event.KeyListener;
 import java.awt.Frame;
 
 /**
- * This will implement all of the key event listeners for the car (I think)
+ * CarKeyListener handles keyboard inputs.
  */
 public class CarKeyListener implements KeyListener {
 
@@ -20,7 +20,7 @@ public class CarKeyListener implements KeyListener {
     /**
      * The types of action the user would like to perform on the car.
      */
-    private static enum ActionType {
+    public static enum ActionType {
         ACCELERATE("Accelerate"),
         BRAKE("Brake"),
         TURN_LEFT("Turn left"),
@@ -59,40 +59,21 @@ public class CarKeyListener implements KeyListener {
         }
     }
 
-    private void handleActionType(ActionType action) {
-        // TODO hide the implementation from the handler
-        // e.g. this.controller.brake vs this.controller.pedals.brake.
-        // what is the correct way to do this?
-        switch (action) {
-            case ACCELERATE:
-                this.controller.pedals.accelerate();
-                break;
-            case BRAKE:
-                this.controller.pedals.brake();
-                break;
-            case TURN_LEFT:
-                this.controller.steering.turnLeft();
-                break;
-            case TURN_RIGHT:
-                this.controller.steering.turnRight();
-                break;
-        }
-    }
-
     /**
      * TODO what does this actually do? It seems that only keyPressed is called.
+     * Commenting this out because I don't think it does anything, but it
+     * needs to be implemented.  Boo Java
      */
     @Override
     public void keyTyped(KeyEvent e) {
-        ActionType action = ActionType.getActionType(e);
-        if (action == ActionType.UNKNOWN) {
-            return;
-        }
+//        ActionType action = ActionType.getActionType(e);
+//        if (action == ActionType.UNKNOWN) {
+//            return;
+//        }
     }
 
     /**
-     * I think this is the only event listener that we need TODO comment out the
-     * rest?
+     * I think this is the only event listener that we need.
      *
      * @param e
      */
@@ -108,23 +89,23 @@ public class CarKeyListener implements KeyListener {
         
         // handle the action
         // this should probably be done in the controller
-        this.handleActionType(action);
+        this.controller.handleActionType(action);
     }
 
     /**
      * TODO do we really care about this?
-     *
-     * @param e
+     * Commenting this out because I don't think it does anything, but it
+     * needs to be implemented.  Boo Java
      */
     @Override
     public void keyReleased(KeyEvent e) {
-        ActionType action = ActionType.getActionType(e);
-        if (action == ActionType.UNKNOWN) {
-            return;
-        }
-
-        // Perform the appropriate action on the controller
-        System.out.println("keyReleased " + action);
+//        ActionType action = ActionType.getActionType(e);
+//        if (action == ActionType.UNKNOWN) {
+//            return;
+//        }
+//
+//        // Perform the appropriate action on the controller
+//        System.out.println("keyReleased " + action);
     }
 
     public static void main(String[] args) {
