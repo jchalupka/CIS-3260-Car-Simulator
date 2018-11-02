@@ -1,5 +1,7 @@
 package carsimulator;
 
-public class CarUI {
+import java.awt.Frame;
+
+public class CarUI extends Frame {
     
 }

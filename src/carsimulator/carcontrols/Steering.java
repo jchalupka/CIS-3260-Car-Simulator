@@ -30,6 +30,7 @@ public class Steering {
      */
     public double turnLeft() {
         LOGGER.log(Level.INFO, "Turning left");
+        System.out.println("Turning left");
         return this.direction.increase(turnAmount);
     }
 
