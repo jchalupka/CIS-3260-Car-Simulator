@@ -35,7 +35,7 @@ Also note that completed just means the basic funcionality is completed, and IN_
 | InternalTemperatureControl  | IN_PROGRESS :lemon:|
 | Direction     | COMPLETED :green_apple:    |
 | Odometer      | IN_PROGRESS :lemon: |
-| GearBox       | IN_PROGRESS :lemon: |
+| GearBox       | COMPLETED :green_apple: |
 | Pedals        | COMPLETED    :green_apple: |
 | Gas           | COMPLETED    :green_apple: |
 | CarUI         | NOT_STARTED  :apple: |
