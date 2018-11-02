@@ -30,7 +30,7 @@ Also note that completed just means the basic funcionality is completed, and IN_
 | Name          | Status        |
 | ------------- | ------------- |
 | Car           | NOT_STARTED  :apple: |
-| CarControls   | IN_PROGRESS  :lemon: |
+| CarControls   | COMPLETED  :green_apple: |
 | Steering      | COMPLETED    :green_apple: |
 | InternalTemperatureControl  | IN_PROGRESS :lemon:|
 | Direction     | COMPLETED :green_apple:    |
@@ -47,7 +47,7 @@ Also note that completed just means the basic funcionality is completed, and IN_
 | FuelGuage     | NOT_STARTED  :apple: |
 | Temperature   | IN_PROGRESS  :lemon: |
 | Accelerometer | NOT_STARTED  :apple: |
-| CarKeyListener  | IN_PROGRESS :lemon:  | 
+| CarKeyListener  | COMPLETED :green_apple:  | 
 
 
 
