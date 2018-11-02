@@ -1,11 +1,12 @@
 package carsimulator;
 
 import carsimulator.carcontrols.*;
+import java.awt.Frame;
 
 public class CarControls {
 
     private final CarKeyListener keyListener;
-    private final CarUI carUI;
+    private final Frame carUI;
     
     public final Steering steering;
     public final GearBox gearbox;
@@ -13,8 +14,9 @@ public class CarControls {
     public final Pedals pedals;
     public final InternalTemperatureControl internalTemperatureControl;
 
-    public CarControls(CarUI carUI) {
-        this.carUI = carUI;
+    public CarControls(Frame frame) {
+        System.out.println("got here");
+        this.carUI = frame;
         
         // TODO change the order of these args
         // Note this shouldn't subclass because it's a has a not an is a

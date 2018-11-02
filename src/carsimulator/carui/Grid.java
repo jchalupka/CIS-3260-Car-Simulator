@@ -17,17 +17,20 @@ import javax.swing.*;
  *
  * @author justin
  */
-public class Grid extends JFrame {
+public class Grid extends JFrame implements Runnable {
 
     private BufferedImage img = null;
     private BufferedImage img2 = null;
-    
+
     int x = 0;
     int y = 0;
 
     public Grid() {
         initComponents();
+    }
 
+    @Override
+    public void run() {
         try {
             img = ImageIO.read(new File("Assets/map.png"));
             img2 = ImageIO.read(new File("Assets/car.png"));
@@ -80,9 +83,8 @@ public class Grid extends JFrame {
             // remember this is in ms, whereas our lastLoopTime etc. vars are in ns.
             try {
                 Thread.sleep((lastLoopTime - System.nanoTime() + OPTIMAL_TIME) / 1000000);
-            }
-            catch (Exception e) {
-                
+            } catch (Exception e) {
+
             }
         }
     }

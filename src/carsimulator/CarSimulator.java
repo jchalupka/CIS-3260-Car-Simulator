@@ -10,6 +10,10 @@ public class CarSimulator {
      */
     public static void main(String[] args) {
         Grid application = new Grid();
+        Thread t1 = new Thread(application);
+        t1.start();
+        // Justin, do something similar to this in CarSimulator.
+        new CarControls(application);
         application.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
     }
 }
