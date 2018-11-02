@@ -4,8 +4,8 @@ import carsimulator.carcontrols.*;
 
 public class CarControls {
 
-    private CarKeyListener keyListener;
-    private CarUI carUI;
+    private final CarKeyListener keyListener;
+    private final CarUI carUI;
     
     public final Steering steering;
     public final GearBox gearbox;
@@ -33,10 +33,32 @@ public class CarControls {
         this.internalTemperatureControl = new InternalTemperatureControl();
     }
     
+    public void handleActionType(CarKeyListener.ActionType action) {
+        // TODO hide the implementation from the handler
+        // e.g. this.brake vs this.pedals.brake.
+        // what is the correct way to do this?
+        switch (action) {
+            case ACCELERATE:
+                this.pedals.accelerate();
+                break;
+            case BRAKE:
+                this.pedals.brake();
+                break;
+            case TURN_LEFT:
+                this.steering.turnLeft();
+                break;
+            case TURN_RIGHT:
+                this.steering.turnRight();
+                break;
+        }
+    }
+    
     public static void main(String[] args) {
         CarUI carUI = new CarUI();
-        new CarControls(carUI);
         carUI.setVisible(true);
+        
+        // Justin, do something similar to this in CarSimulator.
+        new CarControls(carUI);
     }
 
 }
