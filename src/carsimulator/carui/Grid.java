@@ -9,6 +9,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
@@ -19,24 +20,81 @@ import javax.swing.*;
 public class Grid extends JFrame {
 
     private BufferedImage img = null;
+    private BufferedImage img2 = null;
+    
+    int x = 0;
+    int y = 0;
 
-    /**
-     * Creates new form Grid
-     */
     public Grid() {
         initComponents();
-       
+
         try {
             img = ImageIO.read(new File("Assets/map.png"));
+            img2 = ImageIO.read(new File("Assets/car.png"));
         } catch (IOException exc) {
             System.out.println("Failed to load image");
         }
-        setSize(1000,1000);
+
+        setSize(1000, 1000);
         setVisible(true);
+
+        long lastLoopTime = System.nanoTime();
+        long lastFpsTime = 0;
+        long fps = 0;
+        final int TARGET_FPS = 60;
+        final long OPTIMAL_TIME = 1000000000 / TARGET_FPS;
+
+        // keep looping round til the game ends
+        while (true) {
+            // work out how long its been since the last update, this
+            // will be used to calculate how far the entities should
+            // move this loop
+            long now = System.nanoTime();
+            long updateLength = now - lastLoopTime;
+            lastLoopTime = now;
+            double delta = updateLength / ((double) OPTIMAL_TIME);
+
+            // update the frame counter
+            lastFpsTime += updateLength;
+            fps++;
+
+            // update our FPS counter if a second has passed since
+            // we last recorded
+            if (lastFpsTime >= 1000000000) {
+                System.out.println("(FPS: " + fps + ")");
+                lastFpsTime = 0;
+                fps = 0;
+            }
+
+            // update the game logic
+            doGameUpdates(delta);
+
+            // draw everyting
+            Graphics g = getGraphics();
+            paint(g);
+
+            // we want each frame to take 10 milliseconds, to do this
+            // we've recorded when we started the frame. We add 10 milliseconds
+            // to this and then factor in the current time to give 
+            // us our final value to wait for
+            // remember this is in ms, whereas our lastLoopTime etc. vars are in ns.
+            try {
+                Thread.sleep((lastLoopTime - System.nanoTime() + OPTIMAL_TIME) / 1000000);
+            }
+            catch (Exception e) {
+                
+            }
+        }
+    }
+
+    public void doGameUpdates(double delta) {
+        x = x + 10;
+        y = y + 10;
     }
 
     public void paint(Graphics g) {
         g.drawImage(img, 0, 0, this);
+        g.drawImage(img2, x, y, this);
     }
 
     /**
@@ -78,16 +136,24 @@ public class Grid extends JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Grid.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Grid.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Grid.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Grid.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Grid.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Grid.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Grid.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Grid.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
