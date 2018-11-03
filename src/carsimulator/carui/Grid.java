@@ -22,19 +22,23 @@ import java.util.logging.Logger;
  * @author justin
  */
 public class Grid extends JFrame implements Runnable {
+    private static final Logger LOGGER = Logger.getLogger(Grid.class.getName());
+
     private final BufferedImage img;
     private BufferedImage img2;
+    private BufferedImage img2_rotated;
     private final int img2_width;
     private final int img2_height;
 
     private Car carModel;
 
     int x = 48;
-    int y = 910;
+    int y = 310;
 
     public Grid() throws IOException {
         this.img = ImageIO.read(new File("Assets/map.png"));
         this.img2 = ImageIO.read(new File("Assets/car-small.png"));
+        this.img2_rotated = img2;
         // Declaring these here since they need to be final
         this.img2_width = img2.getWidth();
         this.img2_height = img2.getHeight();
@@ -73,7 +77,7 @@ public class Grid extends JFrame implements Runnable {
                 System.out.println("(FPS: " + fps + ")");
                 lastFpsTime = 0;
                 fps = 0;
-                rotate(130);
+                rotate((int) (Math.random() * 2 * Math.PI));
             }
 
             // update the game logic
@@ -101,18 +105,18 @@ public class Grid extends JFrame implements Runnable {
 //        y = y + 10;
     }
 
-    public void rotate(int degrees) {
-        double radians = degrees * (Math.PI / 180);
+    public void rotate(int radians) {
+        LOGGER.log(Level.INFO, "Rotating to {0} degrees", radians * 180/Math.PI);
         AffineTransform tx = new AffineTransform();
         tx.rotate(radians, this.img2_width / 2, this.img2_height / 2);
         AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
         
-        this.img2 = op.filter(this.img2, null);
+        this.img2_rotated = op.filter(this.img2, null);
     }
 
     public void paint(Graphics g) {
         g.drawImage(this.img, 0, 0, this);
-        g.drawImage(this.img2, x, y, this);
+        g.drawImage(this.img2_rotated, x, y, this);
     }
 
     /**
