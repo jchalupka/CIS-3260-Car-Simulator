@@ -22,7 +22,6 @@ import java.lang.Math.*;
  * @author justin
  */
 public class Grid extends JFrame implements Runnable {
-
     private BufferedImage img = null;
     private BufferedImage img2 = null;
 
