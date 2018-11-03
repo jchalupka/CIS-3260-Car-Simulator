@@ -7,6 +7,7 @@ public class CarControls {
 
     private final CarKeyListener keyListener;
     private final Frame carUI;
+    private final Car carModel;
     
     public final Steering steering;
     public final GearBox gearbox;
@@ -14,24 +15,21 @@ public class CarControls {
     public final Pedals pedals;
     public final InternalTemperatureControl internalTemperatureControl;
 
-    public CarControls(Frame frame) {
+    
+    public CarControls(Frame frame, Car carModel) {
         this.carUI = frame;
+        this.carModel = carModel;
         
         // TODO change the order of these args
         // Note this shouldn't subclass because it's a has a not an is a
         this.keyListener = new CarKeyListener(this.carUI, this);
         
         // TODO should probably be a car controls factory
-        // TODO the properties passed in should be taken from the Car model. 
-        // Direction should really be taken from the Car model.
-        Direction direction = new Direction(0.0);
-        this.steering = new Steering(direction);
+        this.steering = new Steering(this.carModel.direction);
         Gas gas = new Gas(100, 0);
         this.gearbox = new GearBox(gas);
         this.odometer = new Odometer();
-        // Speed should really be taken from the Car model.
-        Speed speed = new Speed();
-        this.pedals = new Pedals(speed);
+        this.pedals = new Pedals(this.carModel.speed);
         this.internalTemperatureControl = new InternalTemperatureControl();
     }
     
@@ -60,7 +58,7 @@ public class CarControls {
         carUI.setVisible(true);
         
         // Justin, do something similar to this in CarSimulator.
-        new CarControls(carUI);
+//        new CarControls(carUI, );
     }
 
 }

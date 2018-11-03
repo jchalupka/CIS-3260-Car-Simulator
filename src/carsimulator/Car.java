@@ -12,9 +12,13 @@ public class Car {
     private static final Logger logger = Logger.getLogger(Car.class.getName());
 
     private Location location;
-    private Direction direction;
-    private int speed;
-    private Gas gas;
+    
+    // Note I think these should really be private, but I need them to be accessible by CarController for setting and reading.
+    // Is there an easy way for me to pass them the setter and getter?
+    // TODO this
+    public Direction direction;
+    public Speed speed;
+    public Gas gas;
 
     /**
      *
@@ -62,7 +66,7 @@ public class Car {
      */
     public int getSpeed() {
         logger.log(Level.INFO, "Speed: {0}", this.speed);
-        return this.speed;
+        return this.speed.getSpeed();
     }
 
     /**

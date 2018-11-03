@@ -52,7 +52,7 @@ public class Direction {
      */
     public double increase(double turnAmount) {
         
-        this.val += turnAmount;
+        this.val -= turnAmount;
         this.val = handleWrapAround(this.val);
 
         return this.val;
@@ -64,7 +64,7 @@ public class Direction {
      * @return 
      */
     public double decrease(double turnAmount) {
-        this.val -= turnAmount;
+        this.val += turnAmount;
         this.val = handleWrapAround(this.val);
 
         return this.val;

@@ -14,6 +14,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import carsimulator.Car;
+import carsimulator.Gas;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -35,7 +36,9 @@ public class Grid extends JFrame implements Runnable {
     int x = 48;
     int y = 310;
 
-    public Grid() throws IOException {
+    public Grid(Car carModel) throws IOException {
+        this.carModel = carModel;
+        
         this.img = ImageIO.read(new File("Assets/map.png"));
         this.img2 = ImageIO.read(new File("Assets/car-small.png"));
         this.img2_rotated = img2;
@@ -50,12 +53,16 @@ public class Grid extends JFrame implements Runnable {
     public void run() {
         setSize(1000, 1000);
         setVisible(true);
+        
+        // TODO name these better.  I had to play a bit with these to get it to look right
+        int magic_number1 = 1_000_000_000;
+        int magic_number2 = 1_000_000;
 
         long lastLoopTime = System.nanoTime();
         long lastFpsTime = 0;
         long fps = 0;
         final int TARGET_FPS = 60;
-        final long OPTIMAL_TIME = 1000000000 / TARGET_FPS;
+        final long OPTIMAL_TIME = magic_number1 / TARGET_FPS;
 
         // keep looping round til the game ends
         while (true) {
@@ -73,11 +80,11 @@ public class Grid extends JFrame implements Runnable {
   
             // update our FPS counter if a second has passed since
             // we last recorded
-            if (lastFpsTime >= 1000000000) {
+            if (lastFpsTime >= magic_number2) {
                 System.out.println("(FPS: " + fps + ")");
                 lastFpsTime = 0;
                 fps = 0;
-                rotate((int) (Math.random() * 2 * Math.PI));
+                rotate(this.carModel.getDirection());
             }
 
             // update the game logic
@@ -93,9 +100,10 @@ public class Grid extends JFrame implements Runnable {
             // us our final value to wait for
             // remember this is in ms, whereas our lastLoopTime etc. vars are in ns.
             try {
-                Thread.sleep((lastLoopTime - System.nanoTime() + OPTIMAL_TIME) / 1000000);
+                 Thread.sleep(((System.nanoTime() - lastLoopTime) + OPTIMAL_TIME) / magic_number2);
             } catch (Exception e) {
-
+                // TODO handle the interrupt properly.
+                LOGGER.log(Level.SEVERE, "Interrupt found: ", e);
             }
         }
     }
@@ -105,7 +113,7 @@ public class Grid extends JFrame implements Runnable {
 //        y = y + 10;
     }
 
-    public void rotate(int radians) {
+    public void rotate(double radians) {
         LOGGER.log(Level.INFO, "Rotating to {0} degrees", radians * 180/Math.PI);
         AffineTransform tx = new AffineTransform();
         tx.rotate(radians, this.img2_width / 2, this.img2_height / 2);
@@ -143,53 +151,6 @@ public class Grid extends JFrame implements Runnable {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Grid.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Grid.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Grid.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Grid.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    new Grid().setVisible(true);
-                } catch (IOException ex) {
-                    Logger.getLogger(Grid.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
