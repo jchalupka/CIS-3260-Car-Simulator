@@ -25,7 +25,7 @@ public class Car {
         // TODO add the rest of the variables here as their class is implemented
         this.direction = direction;
         this.gas = gas;
-        this.location = new Point(47, 900);
+        this.location = new Point(48, 910);
         
         // TODO this might not be the correct way to print it.
         logger.log(Level.INFO, "Created a new car: ", this);

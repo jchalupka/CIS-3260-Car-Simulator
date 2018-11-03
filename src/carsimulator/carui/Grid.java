@@ -6,12 +6,16 @@
 package carsimulator.carui;
 
 import java.awt.*;
+import java.awt.geom.AffineTransform;
+import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.concurrent.TimeUnit;
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import carsimulator.Car;
+import java.awt.Point;
+import java.lang.Math.*;
 
 /**
  *
@@ -22,8 +26,10 @@ public class Grid extends JFrame implements Runnable {
     private BufferedImage img = null;
     private BufferedImage img2 = null;
 
-    int x = 47;
-    int y = 900;
+    private Car carModel;
+
+    int x = 48;
+    int y = 910;
 
     public Grid() {
         initComponents();
@@ -92,6 +98,27 @@ public class Grid extends JFrame implements Runnable {
     public void doGameUpdates(double delta) {
 //        x = x + 10;
 //        y = y + 10;
+    }
+
+    //Direction 0 = Left
+    //Direction 1 = Right
+    //Direction 2 = Reverse
+    public void rotate(int direction) {
+        double radians = 0;
+        if (direction == 0) {
+            radians = 270 * (Math.PI / 180);
+        }
+        else if (direction == 1) {
+            radians = 90 * (Math.PI / 180);
+        }
+        else {
+            radians = 180 * (Math.PI / 180);
+        }
+             
+        AffineTransform tx = new AffineTransform();
+        tx.rotate(radians, img2.getWidth() / 2, img2.getHeight() / 2);
+        AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
+        img2 = op.filter(img2, null);
     }
 
     public void paint(Graphics g) {
