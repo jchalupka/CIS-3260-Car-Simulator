@@ -22,8 +22,8 @@ public class Grid extends JFrame implements Runnable {
     private BufferedImage img = null;
     private BufferedImage img2 = null;
 
-    int x = 0;
-    int y = 0;
+    int x = 47;
+    int y = 900;
 
     public Grid() {
         initComponents();
@@ -33,7 +33,7 @@ public class Grid extends JFrame implements Runnable {
     public void run() {
         try {
             img = ImageIO.read(new File("Assets/map.png"));
-            img2 = ImageIO.read(new File("Assets/car.png"));
+            img2 = ImageIO.read(new File("Assets/car-small.png"));
         } catch (IOException exc) {
             System.out.println("Failed to load image");
         }
@@ -90,8 +90,8 @@ public class Grid extends JFrame implements Runnable {
     }
 
     public void doGameUpdates(double delta) {
-        x = x + 10;
-        y = y + 10;
+//        x = x + 10;
+//        y = y + 10;
     }
 
     public void paint(Graphics g) {
