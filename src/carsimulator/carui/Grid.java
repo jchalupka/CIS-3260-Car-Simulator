@@ -66,18 +66,19 @@ public class Grid extends JFrame implements Runnable {
             // update the frame counter
             lastFpsTime += updateLength;
             fps++;
-
+  
             // update our FPS counter if a second has passed since
             // we last recorded
             if (lastFpsTime >= 1000000000) {
                 System.out.println("(FPS: " + fps + ")");
                 lastFpsTime = 0;
                 fps = 0;
+                rotate(130);
             }
 
             // update the game logic
             doGameUpdates(delta);
-
+            
             // draw everyting
             Graphics g = getGraphics();
             paint(g);
@@ -100,21 +101,8 @@ public class Grid extends JFrame implements Runnable {
 //        y = y + 10;
     }
 
-    //Direction 0 = Left
-    //Direction 1 = Right
-    //Direction 2 = Reverse
-    public void rotate(int direction) {
-        double radians = 0;
-        if (direction == 0) {
-            radians = 270 * (Math.PI / 180);
-        }
-        else if (direction == 1) {
-            radians = 90 * (Math.PI / 180);
-        }
-        else {
-            radians = 180 * (Math.PI / 180);
-        }
-             
+    public void rotate(int degrees) {
+        double radians = degrees * (Math.PI / 180);
         AffineTransform tx = new AffineTransform();
         tx.rotate(radians, img2.getWidth() / 2, img2.getHeight() / 2);
         AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
