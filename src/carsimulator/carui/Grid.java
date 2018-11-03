@@ -14,35 +14,36 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import carsimulator.Car;
-import java.awt.Point;
-import java.lang.Math.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author justin
  */
 public class Grid extends JFrame implements Runnable {
-    private BufferedImage img = null;
-    private BufferedImage img2 = null;
+    private final BufferedImage img;
+    private BufferedImage img2;
+    private final int img2_width;
+    private final int img2_height;
 
     private Car carModel;
 
     int x = 48;
     int y = 910;
 
-    public Grid() {
+    public Grid() throws IOException {
+        this.img = ImageIO.read(new File("Assets/map.png"));
+        this.img2 = ImageIO.read(new File("Assets/car-small.png"));
+        // Declaring these here since they need to be final
+        this.img2_width = img2.getWidth();
+        this.img2_height = img2.getHeight();
+        
         initComponents();
     }
 
     @Override
     public void run() {
-        try {
-            img = ImageIO.read(new File("Assets/map.png"));
-            img2 = ImageIO.read(new File("Assets/car-small.png"));
-        } catch (IOException exc) {
-            System.out.println("Failed to load image");
-        }
-
         setSize(1000, 1000);
         setVisible(true);
 
@@ -103,14 +104,15 @@ public class Grid extends JFrame implements Runnable {
     public void rotate(int degrees) {
         double radians = degrees * (Math.PI / 180);
         AffineTransform tx = new AffineTransform();
-        tx.rotate(radians, img2.getWidth() / 2, img2.getHeight() / 2);
+        tx.rotate(radians, this.img2_width / 2, this.img2_height / 2);
         AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
-        img2 = op.filter(img2, null);
+        
+        this.img2 = op.filter(this.img2, null);
     }
 
     public void paint(Graphics g) {
-        g.drawImage(img, 0, 0, this);
-        g.drawImage(img2, x, y, this);
+        g.drawImage(this.img, 0, 0, this);
+        g.drawImage(this.img2, x, y, this);
     }
 
     /**
@@ -176,7 +178,11 @@ public class Grid extends JFrame implements Runnable {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Grid().setVisible(true);
+                try {
+                    new Grid().setVisible(true);
+                } catch (IOException ex) {
+                    Logger.getLogger(Grid.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
