@@ -9,7 +9,6 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.concurrent.TimeUnit;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
@@ -18,7 +17,6 @@ import javax.swing.*;
  * @author justin
  */
 public class Grid extends JFrame implements Runnable {
-
     private BufferedImage img = null;
     private BufferedImage img2 = null;
 
