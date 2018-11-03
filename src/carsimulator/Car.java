@@ -26,7 +26,6 @@ public class Car {
         this.direction = direction;
         this.gas = gas;
         this.location = new Location(this);
-
         // TODO this might not be the correct way to print it.
         logger.log(Level.INFO, "Created a new car: {0}", this);
     }

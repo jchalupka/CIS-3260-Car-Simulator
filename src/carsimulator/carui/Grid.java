@@ -6,11 +6,16 @@
 package carsimulator.carui;
 
 import java.awt.*;
+import java.awt.geom.AffineTransform;
+import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import carsimulator.Car;
+import java.awt.Point;
+import java.lang.Math.*;
 
 /**
  *
@@ -20,8 +25,10 @@ public class Grid extends JFrame implements Runnable {
     private BufferedImage img = null;
     private BufferedImage img2 = null;
 
-    int x = 47;
-    int y = 900;
+    private Car carModel;
+
+    int x = 48;
+    int y = 910;
 
     public Grid() {
         initComponents();
@@ -58,18 +65,19 @@ public class Grid extends JFrame implements Runnable {
             // update the frame counter
             lastFpsTime += updateLength;
             fps++;
-
+  
             // update our FPS counter if a second has passed since
             // we last recorded
             if (lastFpsTime >= 1000000000) {
                 System.out.println("(FPS: " + fps + ")");
                 lastFpsTime = 0;
                 fps = 0;
+                rotate(130);
             }
 
             // update the game logic
             doGameUpdates(delta);
-
+            
             // draw everyting
             Graphics g = getGraphics();
             paint(g);
@@ -90,6 +98,14 @@ public class Grid extends JFrame implements Runnable {
     public void doGameUpdates(double delta) {
 //        x = x + 10;
 //        y = y + 10;
+    }
+
+    public void rotate(int degrees) {
+        double radians = degrees * (Math.PI / 180);
+        AffineTransform tx = new AffineTransform();
+        tx.rotate(radians, img2.getWidth() / 2, img2.getHeight() / 2);
+        AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
+        img2 = op.filter(img2, null);
     }
 
     public void paint(Graphics g) {
