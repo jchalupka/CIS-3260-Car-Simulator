@@ -15,7 +15,6 @@ public class CarControls {
     public final InternalTemperatureControl internalTemperatureControl;
 
     public CarControls(Frame frame) {
-        System.out.println("got here");
         this.carUI = frame;
         
         // TODO change the order of these args
@@ -23,11 +22,12 @@ public class CarControls {
         this.keyListener = new CarKeyListener(this.carUI, this);
         
         // TODO should probably be a car controls factory
-        // TODO Speed and Direction should be taken from the Car model. 
+        // TODO the properties passed in should be taken from the Car model. 
         // Direction should really be taken from the Car model.
         Direction direction = new Direction(0.0);
         this.steering = new Steering(direction);
-        this.gearbox = new GearBox();
+        Gas gas = new Gas(100, 0);
+        this.gearbox = new GearBox(gas);
         this.odometer = new Odometer();
         // Speed should really be taken from the Car model.
         Speed speed = new Speed();

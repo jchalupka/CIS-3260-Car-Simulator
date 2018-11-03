@@ -2,6 +2,7 @@ package carsimulator;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.awt.Point;
 
 /**
  * Car is data model of the car.
@@ -25,6 +26,7 @@ public class Car {
         // TODO add the rest of the variables here as their class is implemented
         this.direction = direction;
         this.gas = gas;
+        this.location = new Location;
 
         // TODO this might not be the correct way to print it.
         logger.log(Level.INFO, "Created a new car: {0}", this);
@@ -49,7 +51,7 @@ public class Car {
      *
      * @param location
      */
-    public void setLocation(Location location) {
+    public void setLocation(Point location) {
         this.location = location;
         logger.log(Level.INFO, "Location Updated: {0}", this.location);
     }
