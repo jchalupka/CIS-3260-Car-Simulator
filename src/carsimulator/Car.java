@@ -32,6 +32,11 @@ public class Car {
         this.location = new Location(this);
         // TODO this might not be the correct way to print it.
         logger.log(Level.INFO, "Created a new car: {0}", this);
+        this.speed = new Speed();
+        
+        // Start updating the location
+        Thread t1 = new Thread(location);
+        t1.start();
     }
 
     /**

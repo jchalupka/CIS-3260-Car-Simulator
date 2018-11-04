@@ -46,6 +46,7 @@ public class PedalsTest {
 
     /**
      * Test of coast method, of class Pedals.
+     * TODO fix this
      */
     @Test
     public void testCoast() {

@@ -1,19 +1,22 @@
 package carsimulator;
 
 import java.awt.Point;
-import java.util.Vector;
+import static java.lang.Thread.sleep;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Location extends Point implements Runnable {
     private final Car car;
     
     /**
      * Location is the location of the car.
-     * Places the car at 0,0
+     * Places the car at the starting point
+     * // TODO actually place the car at the starting point
      * 
      * @param car
      */
     public Location(Car car) {
-        super();
+        super(48, 310);
         this.car = car;
     }
     
@@ -31,10 +34,19 @@ public class Location extends Point implements Runnable {
         
         this.x = (int) (this.x + velocity_x);
         this.y = (int) (this.y + velocity_y);
+        
+        this.car.speed.coast();
     }
     
     @Override
     public void run() {
-        updateLocation();
+        while(true) {
+            updateLocation();
+            try {
+                sleep((long) 0.5);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Location.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 }

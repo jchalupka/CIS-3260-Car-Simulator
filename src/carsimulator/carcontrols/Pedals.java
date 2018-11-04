@@ -10,9 +10,8 @@ public class Pedals {
     private static final Logger logger = Logger.getLogger(Pedals.class.getName());
 
     // TODO come back to these constants to see what feels right with the animation
-    public static final int NATURAL_DESCELERATION_SPEED = 1; // Just a dumb guess
-    public static final int BRAKE_DESCELERATION_SPEED = 4; // Just a dumb guess
-    public static final int ACCELERATION_SPEED = 2; // Just a dumb guess
+    public static final int BRAKE_DESCELERATION_SPEED = -4; // Just a dumb guess
+    public static final int ACCELERATION_SPEED = 5; // Just a dumb guess
 
     private final Speed speed;
 
@@ -23,14 +22,6 @@ public class Pedals {
     public Pedals(Speed speed) {
         logger.log(Level.INFO, "Created a new pedals object");
         this.speed = speed;
-    }
-
-    /**
-     * coast decreases speed as if coasting by NATURAL_DESCELERATION_SPEED
-     */
-    public void coast() {
-        logger.log(Level.INFO, "Coasting");
-        this.speed.decreaseSpeed(NATURAL_DESCELERATION_SPEED);
     }
 
     /**
