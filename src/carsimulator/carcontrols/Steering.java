@@ -7,6 +7,7 @@ import carsimulator.Direction;
 public class Steering {
 
     private static final Logger LOGGER = Logger.getLogger(Steering.class.getName());
+    
     private final Direction direction;
     private final double turnAmount;
 
@@ -19,7 +20,7 @@ public class Steering {
      * @param direction
      */
     public Steering(Direction direction) {
-        this.turnAmount = (2 * Math.PI) / 100;
+        this.turnAmount = (2 * Math.PI) / 50; // TODO play with this until it looks right
         this.direction = direction;
     }
 
