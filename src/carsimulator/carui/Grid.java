@@ -124,7 +124,7 @@ public class Grid extends JFrame implements Runnable {
 
     public void paint(Graphics g) {
         g.drawImage(this.img, 0, 0, this);
-        g.drawImage(this.img2_rotated, x, y, this);
+        g.drawImage(this.img2_rotated, this.carModel.getLocation().x, this.carModel.getLocation().y, this);
     }
 
     /**

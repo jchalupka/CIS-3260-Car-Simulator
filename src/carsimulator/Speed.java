@@ -10,13 +10,14 @@ public class Speed {
 
     private static final int MAX_SPEED = 100;
     private static final int MIN_SPEED = 0;
-    
-   
+
+    public static final int NATURAL_DESCELERATION_SPEED = -1; // Just a dumb guess
+
     private int speed;
 
     /**
      * Speed is the speed of the car.
-     * 
+     *
      * speed will be set to zero upon initialization.
      */
     public Speed() {
@@ -56,5 +57,13 @@ public class Speed {
     public void decreaseSpeed(int speed_delta) {
         logger.log(Level.INFO, "Decreasing speed by {0}", speed_delta);
         this.speed = Math.max(MIN_SPEED, this.speed + speed_delta);
+    }
+
+    /**
+     * coast decreases speed as if coasting by NATURAL_DESCELERATION_SPEED
+     */
+    public void coast() {
+        logger.log(Level.INFO, "Coasting");
+        this.decreaseSpeed(NATURAL_DESCELERATION_SPEED);
     }
 }
