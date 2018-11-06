@@ -136,7 +136,7 @@ public class Grid extends JFrame implements Runnable {
         }
         else if (colour == -16777216) {
             System.out.println("Road!");
-            return 2;
+            return 0;
         }
             
         return 0;
