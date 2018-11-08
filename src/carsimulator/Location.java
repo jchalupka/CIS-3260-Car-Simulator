@@ -16,7 +16,7 @@ public class Location extends Point implements Runnable {
      * @param car
      */
     public Location(Car car) {
-        super(48, 310);
+        super(36, 682);
         this.car = car;
     }
     

@@ -35,8 +35,8 @@ public class Grid extends JFrame implements Runnable {
 
     private Car carModel;
 
-    int x = 48;
-    int y = 310;
+    int x = 36;
+    int y = 682;
 
     public Grid(Car carModel) throws IOException {
         this.carModel = carModel;
