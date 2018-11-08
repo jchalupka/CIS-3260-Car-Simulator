@@ -37,6 +37,10 @@ public class Speed {
         return speed;
     }
 
+    public void setSpeed(int speed) {
+        this.speed = speed;
+    }
+    
     /**
      * increaseSpeed increases the current speed by speed_delta. The function
      * also ensures the speed does not go above the maximum speed.

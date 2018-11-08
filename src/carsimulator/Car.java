@@ -75,6 +75,15 @@ public class Car {
     }
 
     /**
+     * setSpeed sets the cars speed.
+     * 
+     * @param speed 
+     */
+    public void setSpeed(Speed speed) {
+        this.speed.setSpeed(0);
+    }
+
+    /**
      * getCurrentGasAmount gets the current amount of gas in the car.
      *
      * @return

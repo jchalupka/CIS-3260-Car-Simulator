@@ -86,13 +86,11 @@ public class Grid extends JFrame implements Runnable {
                 //System.out.println("(FPS: " + fps + ")");
                 lastFpsTime = 0;
                 fps = 0;
-                int colour = checkPixelColour();
             }
-
+            
             // update the game logic
             doGameUpdates(delta);
             rotate(this.carModel.getDirection());
-
 
             // draw everyting
             Graphics g = getGraphics();
@@ -115,32 +113,6 @@ public class Grid extends JFrame implements Runnable {
     public void doGameUpdates(double delta) {
 //        x = x + 10;
 //        y = y + 10;
-    }
-
-    //Return 0 for road (black)
-    //Return 1 for Grass (green)
-    //Return 2 for Water (blue)
-    public int checkPixelColour() {
-        Location carLocation = carModel.getLocation();
-
-        int colour = img.getRGB(carLocation.x, carLocation.y);
-        //-16777216 = Road
-        //-16359103 = Grass
-        //-16402177 = Water
-        if (colour == -16402177) {
-            System.out.println("Water!");
-            return 2;
-        }
-        else if (colour == -16359103) {
-            System.out.println("Grass!");
-            return 1;
-        }
-        else if (colour == -16777216) {
-            System.out.println("Road!");
-            return 0;
-        }
-            
-        return 0;
     }
 
     public void rotate(double radians) {
