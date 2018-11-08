@@ -29,23 +29,23 @@ Also note that completed just means the basic funcionality is completed, and IN_
 
 | Name          | Status        |
 | ------------- | ------------- |
-| Car           | NOT_STARTED  :apple: |
+| Car           | COMPLETED  :green_apple: |
 | CarControls   | COMPLETED  :green_apple: |
 | Steering      | COMPLETED    :green_apple: |
-| InternalTemperatureControl  | IN_PROGRESS :lemon:|
+| InternalTemperatureControl  | COMPLETED :green_apple:|
 | Direction     | COMPLETED :green_apple:    |
-| Odometer      | IN_PROGRESS :lemon: |
+| Odometer      | COMPLETED :green_apple: |
 | GearBox       | COMPLETED :green_apple: |
 | Pedals        | COMPLETED    :green_apple: |
 | Gas           | COMPLETED    :green_apple: |
 | CarUI         | NOT_STARTED  :apple: |
-| Map           | IN_PROGRESS  :lemon: |
-| Environment   | IN_PROGRESS  :lemon: |
+| Map           | COMPLETED  :green_apple: |
+| Environment   | COMPLETED  :green_apple: |
 | Speedometer   | NOT_STARTED  :apple: |
 | Compass       | NOT_STARTED  :apple: |
 | OdometerView  | NOT_STARTED  :apple: |
 | FuelGuage     | NOT_STARTED  :apple: |
-| Temperature   | IN_PROGRESS  :lemon: |
+| Temperature   | COMPLETED  :green_apple: |
 | Accelerometer | NOT_STARTED  :apple: |
 | CarKeyListener  | COMPLETED :green_apple:  | 
 
