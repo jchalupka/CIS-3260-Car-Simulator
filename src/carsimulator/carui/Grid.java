@@ -53,7 +53,7 @@ public class Grid extends JFrame implements Runnable {
 
     @Override
     public void run() {
-        setSize(500, 500);
+        setSize(750, 750);
         setVisible(true);
 
         // TODO name these better.  I had to play a bit with these to get it to look right
