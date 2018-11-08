@@ -6,22 +6,22 @@ package carsimulator.carcontrols;
  */
 public class InternalTemperatureControl {
 
-  private double internalTemperature;
+  private int internalTemperature;
 
   /*
   * Create the temperature class
   * Default temperature is room temperature
   */
-  public InternalTemperatureControl()
+  public InternalTemperatureControl(int obj)
   {
-      this.internalTemperature = 21.0;
+      this.internalTemperature = obj;
   }
 
   /*
   * Return the current internal temperature
   @return temperature
   */
-  public double getInternalTemp()
+  public int getInternalTemp()
   {
       return this.internalTemperature;
   }
@@ -53,7 +53,7 @@ public class InternalTemperatureControl {
   */
   public void decrementTrip()
   {
-      decreateTemp(1);
+      decreaseTemp(1);
   }
 
   /*
