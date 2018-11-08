@@ -46,5 +46,29 @@ public class InternalTempTest {
         int result = instance.getInternalTemp();
         assertEquals(expResult, result);
     }
+    
+    @Test
+    public void testIncrementInternalTemp() {
+        System.out.println("Incremented Temp");
+        int expResult = 22;
+        instance.incrementTemp();
+        int result = instance.getInternalTemp();
+        assertEquals(expResult, result);
+    }
+    
+    @Test
+    public void testDecrementInternalTemp() {
+        System.out.println("Decreased Temp");
+        int expResult = 20;
+        instance.decrementTemp();
+        int result = instance.getInternalTemp();
+        assertEquals(expResult, result);
+        if (result == 21)
+        {
+            System.out.println("Minus");
+        }
+    }
+    
+    
 
 }

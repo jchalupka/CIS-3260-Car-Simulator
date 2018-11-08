@@ -51,7 +51,7 @@ public class InternalTemperatureControl {
   /*
   * Increment the temperature
   */
-  public void decrementTrip()
+  public void decrementTemp()
   {
       decreaseTemp(1);
   }
