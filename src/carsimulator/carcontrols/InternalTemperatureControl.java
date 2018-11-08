@@ -28,7 +28,7 @@ public class InternalTemperatureControl {
 
   public void resetTemperature()
   {
-      this.internalTemperature = 0;
+      this.internalTemperature = 21;
   }
 
   /*
