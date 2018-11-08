@@ -30,7 +30,7 @@ public class CarControls {
         this.gearbox = new GearBox(gas);
         this.odometer = new Odometer();
         this.pedals = new Pedals(this.carModel.speed);
-        this.internalTemperatureControl = new InternalTemperatureControl();
+        this.internalTemperatureControl = new InternalTemperatureControl(21);
     }
     
     public void handleActionType(CarKeyListener.ActionType action) {
