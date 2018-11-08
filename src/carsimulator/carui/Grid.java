@@ -41,8 +41,8 @@ public class Grid extends JFrame implements Runnable {
     public Grid(Car carModel) throws IOException {
         this.carModel = carModel;
 
-        this.img = ImageIO.read(new File("Assets/map.png"));
-        this.img2 = ImageIO.read(new File("Assets/car-small.png"));
+        this.img = ImageIO.read(new File("Assets/map-small.png"));
+        this.img2 = ImageIO.read(new File("Assets/car-tiny.png"));
         this.img2_rotated = img2;
         // Declaring these here since they need to be final
         this.img2_width = img2.getWidth();
@@ -53,7 +53,7 @@ public class Grid extends JFrame implements Runnable {
 
     @Override
     public void run() {
-        setSize(1000, 1000);
+        setSize(500, 500);
         setVisible(true);
 
         // TODO name these better.  I had to play a bit with these to get it to look right
@@ -86,12 +86,13 @@ public class Grid extends JFrame implements Runnable {
                 //System.out.println("(FPS: " + fps + ")");
                 lastFpsTime = 0;
                 fps = 0;
-                rotate(this.carModel.getDirection());
                 int colour = checkPixelColour();
             }
 
             // update the game logic
             doGameUpdates(delta);
+            rotate(this.carModel.getDirection());
+
 
             // draw everyting
             Graphics g = getGraphics();
