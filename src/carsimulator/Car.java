@@ -1,5 +1,6 @@
 package carsimulator;
 
+import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -11,19 +12,20 @@ public class Car {
     // Simple logger to log events
     private static final Logger logger = Logger.getLogger(Car.class.getName());
 
-    private Location location;
-    
+
     // Note I think these should really be private, but I need them to be accessible by CarController for setting and reading.
     // Is there an easy way for me to pass them the setter and getter?
     // TODO this
-    public Direction direction;
-    public Speed speed;
-    public Gas gas;
+    protected Location location;
+    protected Direction direction;
+    protected Speed speed;
+    protected Gas gas;
 
     /**
      *
      * @param direction
      * @param gas
+     * @throws java.io.IOException
      */
     public Car(Direction direction, Gas gas) throws IOException {
         // TODO add the rest of the variables here as their class is implemented
@@ -33,7 +35,7 @@ public class Car {
         // TODO this might not be the correct way to print it.
         logger.log(Level.INFO, "Created a new car: {0}", this);
         this.speed = new Speed();
-        
+
         // Start updating the location
         Thread t1 = new Thread(location);
         t1.start();
@@ -76,8 +78,8 @@ public class Car {
 
     /**
      * setSpeed sets the cars speed.
-     * 
-     * @param speed 
+     *
+     * @param speed
      */
     public void setSpeed(Speed speed) {
         this.speed.setSpeed(0);

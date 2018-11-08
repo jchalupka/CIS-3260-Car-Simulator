@@ -27,6 +27,15 @@ public class Direction {
     }
 
     /**
+     * setDirection sets the direction.
+     * 
+     * @param val 
+     */
+    public void setDirection(double val) {
+        this.val = val;
+    }
+
+    /**
      * getDirection gets the cars current direction.
      * @return 
      */
