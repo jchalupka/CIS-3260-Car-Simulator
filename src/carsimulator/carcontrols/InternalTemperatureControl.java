@@ -34,7 +34,7 @@ public class InternalTemperatureControl {
   /*
   * Increment the temperature
   */
-  public void incrementTrip()
+  public void incrementTemp()
   {
       increaseTemp(1);
   }
