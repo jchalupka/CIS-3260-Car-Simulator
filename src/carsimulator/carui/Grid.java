@@ -35,9 +35,6 @@ public class Grid extends JFrame implements Runnable {
 
     private Car carModel;
 
-    int x = 36;
-    int y = 682;
-
     public Grid(Car carModel) throws IOException {
         this.carModel = carModel;
 
@@ -118,7 +115,7 @@ public class Grid extends JFrame implements Runnable {
     public void rotate(double radians) {
         LOGGER.log(Level.INFO, "Rotating to {0} degrees", radians * 180 / Math.PI);
         AffineTransform tx = new AffineTransform();
-        tx.rotate(radians, this.img2_width / 2, this.img2_height / 2);
+        tx.rotate(radians + Math.PI/2, this.img2_width / 2, this.img2_height / 2);
         AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
 
         this.img2_rotated = op.filter(this.img2, null);

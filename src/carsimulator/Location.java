@@ -15,8 +15,8 @@ public class Location extends Point implements Runnable {
     private final Car car;
     private final BufferedImage img;
 
-    private static final int start_positon_x = 36;
-    private static final int start_position_y = 682;
+    public static final int start_positon_x = 36;
+    public static final int start_position_y = 682;
 
     /**
      * Location is the location of the car. Places the car at the starting point
@@ -29,10 +29,9 @@ public class Location extends Point implements Runnable {
         // Start on the yellow square
         super(start_positon_x, start_position_y);
         this.car = car;
-
+        
         // Load in the image
         this.img = ImageIO.read(new File("Assets/map-small.png"));
-
     }
 
     /**
@@ -41,10 +40,6 @@ public class Location extends Point implements Runnable {
      * // TODO update this with bounds checking?
      */
     private void updateLocation() {
-        // check which colour the car is on and handle it accordingly
-        Colour colour = checkPixelColour();
-        handlePixelColour(colour);
-
         int speed = this.car.getSpeed();
         double direction = this.car.getDirection();
 
@@ -66,49 +61,6 @@ public class Location extends Point implements Runnable {
             } catch (InterruptedException ex) {
                 Logger.getLogger(Location.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }
-    }
-
-    private enum Colour {
-        BLACK,
-        GREEN,
-        BLUE,
-        OTHER,
-    }
-
-    public Colour checkPixelColour() {
-        int colour = img.getRGB(this.x, this.y);
-        //-16777216 = Road
-        //-16359103 = Grass
-        //-16402177 = Water
-        if (colour == -16402177) {
-            System.out.println("Water!");
-            return Colour.BLUE;
-        } else if (colour == -16359103) {
-            System.out.println("Grass!");
-            return Colour.GREEN;
-        } else if (colour == -16777216) {
-            System.out.println("Road!");
-            return Colour.BLACK;
-        }
-
-        // We don't care about this case, just ignore it.
-        return Colour.OTHER;
-    }
-
-    private void handlePixelColour(Colour colour) {
-        if (colour == Colour.OTHER || colour == Colour.BLACK) {
-            // ignoring it
-            return;
-        } else if (colour == Colour.BLUE) { // Water
-            // Reset the car position
-            // TODO let the user know they crashed in a JOptionPane
-            // See this:
-            JOptionPane.showMessageDialog(null, "CHANGE ME.");
-
-        } else if (colour == Colour.GREEN) {
-            // Set the car's speed to 0.
-            this.car.speed.setSpeed(0);
         }
     }
 }
