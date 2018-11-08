@@ -25,7 +25,7 @@ public class Car {
      * @param direction
      * @param gas
      */
-    public Car(Direction direction, Gas gas) {
+    public Car(Direction direction, Gas gas) throws IOException {
         // TODO add the rest of the variables here as their class is implemented
         this.direction = direction;
         this.gas = gas;
