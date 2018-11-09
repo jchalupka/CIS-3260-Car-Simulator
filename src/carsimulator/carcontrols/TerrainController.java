@@ -6,6 +6,9 @@ import carsimulator.Speed;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import static java.lang.Thread.sleep;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 
@@ -19,9 +22,15 @@ public class TerrainController implements Runnable {
     @Override
     public void run() {
         while (true) {
-            // check which colour the car is on and handle it accordingly
-            Colour colour = checkPixelColour();
-            handlePixelColour(colour);
+            try {
+                // check which colour the car is on and handle it accordingly
+                Colour colour = checkPixelColour();
+                handlePixelColour(colour);
+                // TODO is this the cause of the water bug?
+                sleep((long)10);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(TerrainController.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
 
     }
@@ -33,6 +42,11 @@ public class TerrainController implements Runnable {
 
         // Load in the image
         this.img = ImageIO.read(new File("Assets/map-small.png"));
+        
+        // Kick off the terrain controller thread
+        Thread t1 = new Thread(this);
+        t1.setPriority(Thread.MAX_PRIORITY);
+        t1.start();
     }
 
     private enum Colour {
@@ -49,13 +63,13 @@ public class TerrainController implements Runnable {
         //-16402177 = Water
         // TODO make this a switch
         if (colour == -16402177) {
-            System.out.println("Water!");
+//            System.out.println("Water!");
             return Colour.BLUE;
         } else if (colour == -16359103) {
-            System.out.println("Grass!");
+//            System.out.println("Grass!");
             return Colour.GREEN;
         } else if (colour == -16777216) {
-            System.out.println("Road!");
+//            System.out.println("Road!");
             return Colour.BLACK;
         }
 
@@ -64,10 +78,7 @@ public class TerrainController implements Runnable {
     }
 
     private void handlePixelColour(Colour colour) {
-        if (colour == Colour.OTHER || colour == Colour.BLACK) {
-            // ignoring it
-            return;
-        } else if (colour == Colour.BLUE) { // Water
+        if (colour == Colour.BLUE) { // Water
             // Reset the car position
             JOptionPane.showMessageDialog(null, "You crashed!  Position reset.");
             this.location.setLocation(Location.start_positon_x, Location.start_position_y);
