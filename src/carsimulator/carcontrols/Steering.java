@@ -20,7 +20,7 @@ public class Steering {
      * @param direction
      */
     public Steering(Direction direction) {
-        this.turnAmount = (2 * Math.PI) / 50; // TODO play with this until it looks right
+        this.turnAmount = (Math.PI/10);
         this.direction = direction;
     }
 
