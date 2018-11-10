@@ -28,7 +28,7 @@ public class CarControls {
         this.odometer = new Odometer();
         this.pedals = new Pedals(this.carModel.speed);
         this.internalTemperatureControl = new InternalTemperatureControl(21);
-        this.terrainController = new TerrainController(this.carModel.speed, this.carModel.direction, this.carModel.location);
+        this.terrainController = new TerrainController(this.carModel.speed, this.carModel.direction, this.carModel.location, this.carModel);
         
         // TODO change the order of these args
         // Note this shouldn't subclass because it's a has a not an is a

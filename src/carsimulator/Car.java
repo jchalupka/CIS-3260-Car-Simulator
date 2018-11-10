@@ -20,6 +20,7 @@ public class Car {
     protected Direction direction;
     protected Speed speed;
     protected Gas gas;
+    public boolean isCrashed;
 
     /**
      *
@@ -35,6 +36,7 @@ public class Car {
         // TODO this might not be the correct way to print it.
         logger.log(Level.INFO, "Created a new car: {0}", this);
         this.speed = new Speed();
+        this.isCrashed = false;
 
         // Start updating the location
         Thread t1 = new Thread(location);

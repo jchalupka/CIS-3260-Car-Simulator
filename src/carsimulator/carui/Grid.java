@@ -30,9 +30,10 @@ public class Grid extends JFrame implements Runnable {
     private final BufferedImage img;
     private BufferedImage img2;
     private BufferedImage img2_rotated;
+    private BufferedImage crashedText;
     private final int img2_width;
     private final int img2_height;
-
+    
     private Car carModel;
 
     public Grid(Car carModel) throws IOException {
@@ -40,6 +41,7 @@ public class Grid extends JFrame implements Runnable {
 
         this.img = ImageIO.read(new File("Assets/map-small.png"));
         this.img2 = ImageIO.read(new File("Assets/car-tiny.png"));
+        this.crashedText = ImageIO.read(new File("Assets/crashed-small.png"));
         this.img2_rotated = img2;
         // Declaring these here since they need to be final
         this.img2_width = img2.getWidth();
@@ -56,6 +58,7 @@ public class Grid extends JFrame implements Runnable {
         // TODO name these better.  I had to play a bit with these to get it to look right
         int magic_number1 = 1_000_000_000;
         int magic_number2 = 1_000_000;
+        int crashCounter = 0;
 
         long lastLoopTime = System.nanoTime();
         long lastFpsTime = 0;
@@ -88,6 +91,15 @@ public class Grid extends JFrame implements Runnable {
             // update the game logic
             doGameUpdates(delta);
             rotate(this.carModel.getDirection());
+            
+            if (carModel.isCrashed == true && crashCounter >= 50) {
+                carModel.isCrashed = false;
+                crashCounter = 0;
+            }
+            else if (carModel.isCrashed == true)
+            {
+                crashCounter++;
+            }
 
             // draw everyting
             Graphics g = getGraphics();
@@ -124,6 +136,10 @@ public class Grid extends JFrame implements Runnable {
     public void paint(Graphics g) {
         g.drawImage(this.img, 0, 0, this);
         g.drawImage(this.img2_rotated, this.carModel.getLocation().x, this.carModel.getLocation().y, this);
+        
+        if (carModel.isCrashed == true) {
+            g.drawImage(this.crashedText, 25, 300, this);
+        }
     }
 
     /**
