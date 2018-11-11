@@ -119,19 +119,19 @@ public class Grid extends JFrame implements Runnable {
     }
 
     public void paint(Graphics g) {
-//        g.drawImage(this.img, 0, 0, this);
-//        g.drawImage(this.img2_rotated, this.carModel.getLocation().x, this.carModel.getLocation().y, this);
-//        
-//        if (carModel.isCrashed == true) {
-//            
-//            g.drawImage(this.crashedText, 25, 300, this);
-//            try {
-//                Thread.sleep(500);
-//            } catch (Exception e) {
-//                LOGGER.log(Level.SEVERE, "Interrupt found: ", e);
-//            }
-//            carModel.isCrashed = false;
-//        }
+        g.drawImage(this.img, 0, 0, this);
+        g.drawImage(this.img2_rotated, this.carModel.getLocation().x, this.carModel.getLocation().y, this);
+        
+        if (carModel.isCrashed == true) {
+            
+            g.drawImage(this.crashedText, 25, 300, this);
+            try {
+                Thread.sleep(500);
+            } catch (Exception e) {
+                LOGGER.log(Level.SEVERE, "Interrupt found: ", e);
+            }
+            carModel.isCrashed = false;
+        }
     }
 
     /**
