@@ -30,12 +30,12 @@ public class Grid extends JFrame implements Runnable {
     private BufferedImage crashedText;
     private final int img2_width;
     private final int img2_height;
-    
+
     private Car carModel;
 
     public Grid(Car carModel) throws IOException {
         this.carModel = carModel;
-        
+
         try {
             this.img = ImageIO.read(getClass().getClassLoader().getResource("resources/map-small.png"));
             this.img2 = ImageIO.read(getClass().getClassLoader().getResource("resources/car-tiny.png"));
@@ -55,6 +55,7 @@ public class Grid extends JFrame implements Runnable {
     public void run() {
         setSize(750, 750);
         setVisible(true);
+        setResizable(false);
 
         int EXPECTED_FPS_COUNTER = 1_000_000_000;
         int EXPECTED_LAST_FPS_COUNTER = 1_000_000;
@@ -87,7 +88,7 @@ public class Grid extends JFrame implements Runnable {
                 lastFpsTime = 0;
                 fps = 0;
             }
-            
+
             // update the game logic
             rotate(this.carModel.getDirection());
 
@@ -111,26 +112,26 @@ public class Grid extends JFrame implements Runnable {
     public void rotate(double radians) {
         LOGGER.log(Level.INFO, "Rotating to {0} degrees", radians * 180 / Math.PI);
         AffineTransform tx = new AffineTransform();
-        tx.rotate(radians + Math.PI/2, this.img2_width / 2, this.img2_height / 2);
+        tx.rotate(radians + Math.PI / 2, this.img2_width / 2, this.img2_height / 2);
         AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
 
         this.img2_rotated = op.filter(this.img2, null);
     }
 
     public void paint(Graphics g) {
-        g.drawImage(this.img, 0, 0, this);
-        g.drawImage(this.img2_rotated, this.carModel.getLocation().x, this.carModel.getLocation().y, this);
-        
-        if (carModel.isCrashed == true) {
-            
-            g.drawImage(this.crashedText, 25, 300, this);
-            try {
-                Thread.sleep(500);
-            } catch (Exception e) {
-                LOGGER.log(Level.SEVERE, "Interrupt found: ", e);
-            }
-            carModel.isCrashed = false;
-        }
+//        g.drawImage(this.img, 0, 0, this);
+//        g.drawImage(this.img2_rotated, this.carModel.getLocation().x, this.carModel.getLocation().y, this);
+//        
+//        if (carModel.isCrashed == true) {
+//            
+//            g.drawImage(this.crashedText, 25, 300, this);
+//            try {
+//                Thread.sleep(500);
+//            } catch (Exception e) {
+//                LOGGER.log(Level.SEVERE, "Interrupt found: ", e);
+//            }
+//            carModel.isCrashed = false;
+//        }
     }
 
     /**
