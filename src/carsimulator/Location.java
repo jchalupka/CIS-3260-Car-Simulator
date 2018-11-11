@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
 public class Location extends Point implements Runnable {
 
     private final Car car;
-   //private final BufferedImage img;
+   private final BufferedImage img;
 
     public static final int start_positon_x = 36;
     public static final int start_position_y = 682;
