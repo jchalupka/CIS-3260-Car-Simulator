@@ -16,6 +16,7 @@ import javax.swing.*;
 import carsimulator.Car;
 import carsimulator.Gas;
 import carsimulator.Location;
+import static java.lang.Thread.sleep;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -95,15 +96,6 @@ public class Grid extends JFrame implements Runnable {
             // update the game logic
             doGameUpdates(delta);
             rotate(this.carModel.getDirection());
-            
-            if (carModel.isCrashed == true && crashCounter >= 50) {
-                carModel.isCrashed = false;
-                crashCounter = 0;
-            }
-            else if (carModel.isCrashed == true)
-            {
-                crashCounter++;
-            }
 
             // draw everyting
             Graphics g = getGraphics();
@@ -142,7 +134,14 @@ public class Grid extends JFrame implements Runnable {
         g.drawImage(this.img2_rotated, this.carModel.getLocation().x, this.carModel.getLocation().y, this);
         
         if (carModel.isCrashed == true) {
+            
             g.drawImage(this.crashedText, 25, 300, this);
+            try {
+                Thread.sleep(500);
+            } catch (Exception e) {
+                LOGGER.log(Level.SEVERE, "Interrupt found: ", e);
+            }
+            carModel.isCrashed = false;
         }
     }
 
