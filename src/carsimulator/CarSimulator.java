@@ -13,7 +13,6 @@ public class CarSimulator {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO turn this into a factory.
         LogManager.getLogManager().reset();
         Gas gas = new Gas(100, 100);
         Direction direction = new Direction(3 * Math.PI / 2);

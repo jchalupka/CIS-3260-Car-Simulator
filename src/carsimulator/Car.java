@@ -13,9 +13,6 @@ public class Car {
     private static final Logger logger = Logger.getLogger(Car.class.getName());
 
 
-    // Note I think these should really be private, but I need them to be accessible by CarController for setting and reading.
-    // Is there an easy way for me to pass them the setter and getter?
-    // TODO this
     protected Location location;
     protected Direction direction;
     protected Speed speed;
@@ -29,18 +26,15 @@ public class Car {
      * @throws java.io.IOException
      */
     public Car(Direction direction, Gas gas) throws IOException {
-        // TODO add the rest of the variables here as their class is implemented
         this.direction = direction;
         this.gas = gas;
         this.location = new Location(this);
-        // TODO this might not be the correct way to print it.
-        logger.log(Level.INFO, "Created a new car: {0}", this);
         this.speed = new Speed();
         this.isCrashed = false;
 
         // Start updating the location
-        Thread t1 = new Thread(location);
-        t1.start();
+        Thread t = new Thread(location);
+        t.start();
     }
 
     /**

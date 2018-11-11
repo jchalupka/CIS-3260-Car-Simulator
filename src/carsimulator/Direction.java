@@ -10,8 +10,6 @@ public class Direction {
     private static final Logger logger = Logger.getLogger(Car.class.getName());
     
     // The maximum and minimum amount a car can turn
-    // TODO we might not need this depending on how we handle steering, but
-    // I'm leaving it in to be more flexible.
     private static final double MAX_TURN_AMOUNT = Math.PI * 2;
     private static final double MIN_TURN_AMOUNT = 0;
     private static final double TURN_DIFFERENCE = MAX_TURN_AMOUNT - MIN_TURN_AMOUNT;
