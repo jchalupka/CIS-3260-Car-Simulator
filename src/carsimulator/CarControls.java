@@ -39,19 +39,21 @@ public class CarControls {
         // TODO hide the implementation from the handler
         // e.g. this.brake vs this.pedals.brake.
         // what is the correct way to do this?
-        switch (action) {
-            case ACCELERATE:
-                this.pedals.accelerate();
-                break;
-            case BRAKE:
-                this.pedals.brake();
-                break;
-            case TURN_LEFT:
-                this.steering.turnLeft();
-                break;
-            case TURN_RIGHT:
-                this.steering.turnRight();
-                break;
+        if (carModel.isCrashed == false) {
+            switch (action) {
+                case ACCELERATE:
+                    this.pedals.accelerate();
+                    break;
+                case BRAKE:
+                    this.pedals.brake();
+                    break;
+                case TURN_LEFT:
+                    this.steering.turnLeft();
+                    break;
+                case TURN_RIGHT:
+                    this.steering.turnRight();
+                    break;
+            }
         }
     }
 
