@@ -36,16 +36,15 @@ public class Location extends Point implements Runnable {
 
         // Load in the image
         this.img = ImageIO.read(new File("Assets/map-small.png"));
-        this.max_x = this.img.getWidth() - 1;
-        this.max_y = this.img.getHeight() - 1;
+        this.max_x = this.img.getWidth() - 20;
+        this.max_y = this.img.getHeight() - 20;
         this.min_x = 0;
-        this.min_y = 0;
+        this.min_y = 20; // Adjusting for the menu bar
     }
 
     /**
      * Updates location based on speed and direction.
      *
-     * // TODO update this with bounds checking?
      */
     private void updateLocation() {
         int speed = this.car.getSpeed();
@@ -56,10 +55,10 @@ public class Location extends Point implements Runnable {
 
         int new_x = (int) (this.x + velocity_x);
         int new_y = (int) (this.y + velocity_y);
-        
-        if (new_x <= this.max_x && new_x >= this.min_x && new_y <= this.max_y && new_x >= this.min_y) {
-           this.x = new_x;
-           this.y = new_y;
+
+        if (new_x <= this.max_x && new_x >= this.min_x && new_y <= this.max_y && new_y >= this.min_y) {
+            this.x = new_x;
+            this.y = new_y;
         }
 
         this.car.speed.coast();
