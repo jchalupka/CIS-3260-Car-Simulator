@@ -35,7 +35,7 @@ public class Location extends Point implements Runnable {
         this.car = car;
 
         // Load in the image
-        this.img = ImageIO.read(new File("Assets/map-small.png"));
+        this.img = ImageIO.read(getClass().getClassLoader().getResource("resources/map-small.png"));
         this.max_x = this.img.getWidth() - 20;
         this.max_y = this.img.getHeight() - 20;
         this.min_x = 0;
