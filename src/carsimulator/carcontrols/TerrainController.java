@@ -18,7 +18,7 @@ public class TerrainController implements Runnable {
     private final Speed speed;
     private final Location location;
     private final Direction direction;
-    private final BufferedImage img;
+    private BufferedImage img = null;
     private final Car carModel;
     
     @Override
@@ -44,8 +44,12 @@ public class TerrainController implements Runnable {
         this.carModel = carModel;
 
         // Load in the image
-        this.img = ImageIO.read(new File("Assets/map-small.png"));
-        
+        try {
+            this.img = ImageIO.read(getClass().getClassLoader().getResource("resources/map-small.png"));
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+                 
         // Kick off the terrain controller thread
         Thread t1 = new Thread(this);
         t1.setPriority(Thread.MAX_PRIORITY);

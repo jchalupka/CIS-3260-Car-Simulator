@@ -27,7 +27,7 @@ public class Grid extends JFrame implements Runnable {
 
     private static final Logger LOGGER = Logger.getLogger(Grid.class.getName());
 
-    private final BufferedImage img;
+    private BufferedImage img = null;
     private BufferedImage img2;
     private BufferedImage img2_rotated;
     private BufferedImage crashedText;
@@ -38,10 +38,14 @@ public class Grid extends JFrame implements Runnable {
 
     public Grid(Car carModel) throws IOException {
         this.carModel = carModel;
-
-        this.img = ImageIO.read(new File("Assets/map-small.png"));
-        this.img2 = ImageIO.read(new File("Assets/car-tiny.png"));
-        this.crashedText = ImageIO.read(new File("Assets/crashed-small.png"));
+        
+        try {
+            this.img = ImageIO.read(getClass().getClassLoader().getResource("resources/map-small.png"));
+            this.img2 = ImageIO.read(getClass().getClassLoader().getResource("resources/car-tiny.png"));
+            this.crashedText = ImageIO.read(getClass().getClassLoader().getResource("resources/crashed-small.png"));
+        } catch (Exception e) {
+            System.out.println(e);
+        }
         this.img2_rotated = img2;
         // Declaring these here since they need to be final
         this.img2_width = img2.getWidth();
