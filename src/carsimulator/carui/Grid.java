@@ -36,7 +36,6 @@ public class Grid extends JFrame implements Runnable {
     private Car carModel;
 
     public Grid(Car carModel) throws IOException {
-        JLabel label1 = new JLabel("Test");
         this.carModel = carModel;
 
         this.img = ImageIO.read(new File("Assets/map-small.png"));
