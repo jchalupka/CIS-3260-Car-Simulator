@@ -11,7 +11,7 @@ public class Speed {
     private static final int MAX_SPEED = 100;
     private static final int MIN_SPEED = 0;
 
-    public static final int NATURAL_DESCELERATION_SPEED = -1; // Just a dumb guess
+    public static final int NATURAL_DESCELERATION_SPEED = -1;
 
     private int speed;
 

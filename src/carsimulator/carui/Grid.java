@@ -9,14 +9,10 @@ import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import carsimulator.Car;
-import carsimulator.Gas;
-import carsimulator.Location;
-import static java.lang.Thread.sleep;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -60,16 +56,15 @@ public class Grid extends JFrame implements Runnable {
         setSize(750, 750);
         setVisible(true);
 
-        // TODO name these better.  I had to play a bit with these to get it to look right
-        int magic_number1 = 1_000_000_000;
-        int magic_number2 = 1_000_000;
+        int EXPECTED_FPS_COUNTER = 1_000_000_000;
+        int EXPECTED_LAST_FPS_COUNTER = 1_000_000;
         int crashCounter = 0;
 
         long lastLoopTime = System.nanoTime();
         long lastFpsTime = 0;
         long fps = 0;
         final int TARGET_FPS = 10;
-        final long OPTIMAL_TIME = magic_number1 / TARGET_FPS;
+        final long OPTIMAL_TIME = EXPECTED_FPS_COUNTER / TARGET_FPS;
 
         // keep looping round til the game ends
         while (true) {
@@ -87,14 +82,13 @@ public class Grid extends JFrame implements Runnable {
 
             // update our FPS counter if a second has passed since
             // we last recorded
-            if (lastFpsTime >= magic_number2) {
+            if (lastFpsTime >= EXPECTED_LAST_FPS_COUNTER) {
                 //System.out.println("(FPS: " + fps + ")");
                 lastFpsTime = 0;
                 fps = 0;
             }
             
             // update the game logic
-            doGameUpdates(delta);
             rotate(this.carModel.getDirection());
 
             // draw everyting
@@ -107,17 +101,11 @@ public class Grid extends JFrame implements Runnable {
             // us our final value to wait for
             // remember this is in ms, whereas our lastLoopTime etc. vars are in ns.
             try {
-                Thread.sleep(((System.nanoTime() - lastLoopTime) + OPTIMAL_TIME) / magic_number2);
+                Thread.sleep(((System.nanoTime() - lastLoopTime) + OPTIMAL_TIME) / EXPECTED_LAST_FPS_COUNTER);
             } catch (Exception e) {
-                // TODO handle the interrupt properly.
                 LOGGER.log(Level.SEVERE, "Interrupt found: ", e);
             }
         }
-    }
-
-    public void doGameUpdates(double delta) {
-//        x = x + 10;
-//        y = y + 10;
     }
 
     public void rotate(double radians) {

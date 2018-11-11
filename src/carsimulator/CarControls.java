@@ -30,15 +30,10 @@ public class CarControls {
         this.internalTemperatureControl = new InternalTemperatureControl(21);
         this.terrainController = new TerrainController(this.carModel.speed, this.carModel.direction, this.carModel.location, this.carModel);
         
-        // TODO change the order of these args
-        // Note this shouldn't subclass because it's a has a not an is a
         this.keyListener = new CarKeyListener(this.carUI, this);
     }
 
     public synchronized void handleActionType(CarKeyListener.ActionType action) {
-        // TODO hide the implementation from the handler
-        // e.g. this.brake vs this.pedals.brake.
-        // what is the correct way to do this?
         if (carModel.isCrashed == false) {
             switch (action) {
                 case ACCELERATE:

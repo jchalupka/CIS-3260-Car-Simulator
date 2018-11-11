@@ -5,11 +5,16 @@ import java.awt.event.KeyListener;
 import java.awt.Frame;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * CarKeyListener handles keyboard inputs.
  */
 public class CarKeyListener implements KeyListener {
+
+    // Simple logger to log events
+    private static final Logger logger = Logger.getLogger(Car.class.getName());
 
     // Going to call the controller when actions are found.
     private final CarControls controller;
@@ -30,7 +35,7 @@ public class CarKeyListener implements KeyListener {
         BRAKE("Brake"),
         TURN_LEFT("Turn left"),
         TURN_RIGHT("Turn right"),
-        UNKNOWN("Unknown");  // TODO Is there a better way to handle unknown?
+        UNKNOWN("Unknown");
 
         private final String desc;
 
@@ -64,40 +69,11 @@ public class CarKeyListener implements KeyListener {
         }
     }
 
-    /**
-     * TODO what does this actually do? It seems that only keyPressed is called.
-     * Commenting this out because I don't think it does anything, but it needs
-     * to be implemented. Boo Java
-     */
     @Override
     public void keyTyped(KeyEvent e) {
-//        ActionType action = ActionType.getActionType(e);
-//        if (action == ActionType.UNKNOWN) {
-//            return;
-//        }
+        // Doesn't do anything
     }
 
-    /**
-     * I think this is the only event listener that we need.
-     *
-     * @param e
-     */
-    /*
-    @Override
-    public synchronized void keyPressed(KeyEvent e) {
-        ActionType action = ActionType.getActionType(e);
-        if (action == ActionType.UNKNOWN) {
-            return;
-        }
-
-        // Perform the appropriate action on the controller
-        System.out.println("keyPressed " + action);
-        
-        // handle the action
-        // this should probably be done in the controller
-        this.controller.handleActionType(action);
-    }
-     */
     @Override
     public synchronized void keyPressed(KeyEvent e) {
         this.pressed.add(e.getKeyCode());
@@ -107,44 +83,15 @@ public class CarKeyListener implements KeyListener {
             if (action == ActionType.UNKNOWN) {
                 return;
             }
+            logger.log(Level.INFO, "keyPressed " + action);
 
-            // Perform the appropriate action on the controller
-            System.out.println("keyPressed " + action);
-
-            // handle the action
-            // this should probably be done in the controller
+            // Call the action in the controller
             this.controller.handleActionType(action);
         }
-
     }
 
     @Override
     public synchronized void keyReleased(KeyEvent e) {
         this.pressed.remove(e.getKeyCode());
     }
-
-    /**
-     * TODO do we really care about this? Commenting this out because I don't
-     * think it does anything, but it needs to be implemented. Boo Java
-     */
-//    @Override
-//    public void keyReleased(KeyEvent e) {
-//        ActionType action = ActionType.getActionType(e);
-//        if (action == ActionType.UNKNOWN) {
-//            return;
-//        }
-//
-//        // Perform the appropriate action on the controller
-//        System.out.println("keyReleased " + action);
-//    }
-    public static void main(String[] args) {
-        // TODO when this is actually used, frame will be the UI
-        Frame frame = new Frame();
-        frame.setVisible(true);
-
-        // Give the CarKeyListener the frame
-        // Just commenting this out because I'm changing the CarKeyListener constructor right now and it's breaking.
-        // new CarKeyListener(frame);
-    }
-
 }

@@ -8,7 +8,6 @@ import static java.lang.Thread.sleep;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
-import javax.swing.JOptionPane;
 
 public class Location extends Point implements Runnable {
 
@@ -24,7 +23,6 @@ public class Location extends Point implements Runnable {
 
     /**
      * Location is the location of the car. Places the car at the starting point
-     * // TODO actually place the car at the starting point
      *
      * @param car
      * @throws java.io.IOException

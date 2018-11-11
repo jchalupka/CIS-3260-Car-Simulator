@@ -21,6 +21,10 @@ public class TerrainController implements Runnable {
     private BufferedImage img = null;
     private final Car carModel;
     
+    private static final int ROAD = -16777216;
+    private static final int GRASS = -16359103;
+    private static final int WATER = -16402177;
+    
     @Override
     public void run() {
         while (true) {
@@ -28,7 +32,6 @@ public class TerrainController implements Runnable {
                 // check which colour the car is on and handle it accordingly
                 Colour colour = checkPixelColour();
                 handlePixelColour(colour);
-                // TODO is this the cause of the water bug?
                 sleep((long)10);
             } catch (InterruptedException ex) {
                 Logger.getLogger(TerrainController.class.getName()).log(Level.SEVERE, null, ex);
@@ -65,19 +68,16 @@ public class TerrainController implements Runnable {
 
     public Colour checkPixelColour() {
         int colour = img.getRGB(this.location.x, this.location.y);
-        //-16777216 = Road
-        //-16359103 = Grass
-        //-16402177 = Water
-        // TODO make this a switch
-        if (colour == -16402177) {
-//            System.out.println("Water!");
-            return Colour.BLUE;
-        } else if (colour == -16359103) {
-//            System.out.println("Grass!");
-            return Colour.GREEN;
-        } else if (colour == -16777216) {
-//            System.out.println("Road!");
-            return Colour.BLACK;
+        
+        switch (colour) {
+            case WATER:
+                return Colour.BLUE;
+            case GRASS:
+                return Colour.GREEN;
+            case ROAD:
+                return Colour.BLACK;
+            default:
+                break;
         }
 
         // We don't care about this case, just ignore it.
@@ -86,7 +86,7 @@ public class TerrainController implements Runnable {
 
     private void handlePixelColour(Colour colour) {
         System.out.println("Handling ");
-        if (colour == Colour.BLUE) { // Water
+        if (colour == Colour.BLUE) {
             // Reset the car position
             carModel.isCrashed = true;
             this.location.setLocation(Location.start_positon_x, Location.start_position_y);

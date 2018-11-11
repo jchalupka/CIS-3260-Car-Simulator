@@ -9,9 +9,8 @@ public class Pedals {
     // Simple logger to log events
     private static final Logger logger = Logger.getLogger(Pedals.class.getName());
 
-    // TODO come back to these constants to see what feels right with the animation
-    public static final int BRAKE_DESCELERATION_SPEED = -4; // Just a dumb guess
-    public static final int ACCELERATION_SPEED = 5; // Just a dumb guess
+    public static final int BRAKE_DESCELERATION_SPEED = -4;
+    public static final int ACCELERATION_SPEED = 5;
 
     private final Speed speed;
 
