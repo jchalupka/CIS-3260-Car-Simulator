@@ -17,6 +17,10 @@ public class Location extends Point implements Runnable {
 
     public static final int start_positon_x = 36;
     public static final int start_position_y = 682;
+    public final int max_x;
+    public final int max_y;
+    public final int min_x;
+    public final int min_y;
 
     /**
      * Location is the location of the car. Places the car at the starting point
@@ -29,9 +33,13 @@ public class Location extends Point implements Runnable {
         // Start on the yellow square
         super(start_positon_x, start_position_y);
         this.car = car;
-        
+
         // Load in the image
         this.img = ImageIO.read(new File("Assets/map-small.png"));
+        this.max_x = this.img.getWidth() - 1;
+        this.max_y = this.img.getHeight() - 1;
+        this.min_x = 0;
+        this.min_y = 0;
     }
 
     /**
@@ -46,8 +54,13 @@ public class Location extends Point implements Runnable {
         double velocity_x = speed * Math.cos(direction);
         double velocity_y = speed * Math.sin(direction);
 
-        this.x = (int) (this.x + velocity_x);
-        this.y = (int) (this.y + velocity_y);
+        int new_x = (int) (this.x + velocity_x);
+        int new_y = (int) (this.y + velocity_y);
+        
+        if (new_x <= this.max_x && new_x >= this.min_x && new_y <= this.max_y && new_x >= this.min_y) {
+           this.x = new_x;
+           this.y = new_y;
+        }
 
         this.car.speed.coast();
     }
