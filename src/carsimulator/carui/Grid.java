@@ -16,6 +16,7 @@ import javax.swing.*;
 import carsimulator.Car;
 import carsimulator.Gas;
 import carsimulator.Location;
+import static java.lang.Thread.sleep;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -27,19 +28,25 @@ public class Grid extends JFrame implements Runnable {
 
     private static final Logger LOGGER = Logger.getLogger(Grid.class.getName());
 
-    private final BufferedImage img;
+    private BufferedImage img = null;
     private BufferedImage img2;
     private BufferedImage img2_rotated;
+    private BufferedImage crashedText;
     private final int img2_width;
     private final int img2_height;
-
+    
     private Car carModel;
 
     public Grid(Car carModel) throws IOException {
         this.carModel = carModel;
-
-        this.img = ImageIO.read(new File("Assets/map-small.png"));
-        this.img2 = ImageIO.read(new File("Assets/car-tiny.png"));
+        
+        try {
+            this.img = ImageIO.read(getClass().getClassLoader().getResource("resources/map-small.png"));
+            this.img2 = ImageIO.read(getClass().getClassLoader().getResource("resources/car-tiny.png"));
+            this.crashedText = ImageIO.read(getClass().getClassLoader().getResource("resources/crashed-small.png"));
+        } catch (Exception e) {
+            System.out.println(e);
+        }
         this.img2_rotated = img2;
         // Declaring these here since they need to be final
         this.img2_width = img2.getWidth();
@@ -56,6 +63,7 @@ public class Grid extends JFrame implements Runnable {
         // TODO name these better.  I had to play a bit with these to get it to look right
         int magic_number1 = 1_000_000_000;
         int magic_number2 = 1_000_000;
+        int crashCounter = 0;
 
         long lastLoopTime = System.nanoTime();
         long lastFpsTime = 0;
@@ -124,6 +132,17 @@ public class Grid extends JFrame implements Runnable {
     public void paint(Graphics g) {
         g.drawImage(this.img, 0, 0, this);
         g.drawImage(this.img2_rotated, this.carModel.getLocation().x, this.carModel.getLocation().y, this);
+        
+        if (carModel.isCrashed == true) {
+            
+            g.drawImage(this.crashedText, 25, 300, this);
+            try {
+                Thread.sleep(500);
+            } catch (Exception e) {
+                LOGGER.log(Level.SEVERE, "Interrupt found: ", e);
+            }
+            carModel.isCrashed = false;
+        }
     }
 
     /**

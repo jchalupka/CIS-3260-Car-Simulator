@@ -3,6 +3,7 @@ package carsimulator.carcontrols;
 import carsimulator.Direction;
 import carsimulator.Location;
 import carsimulator.Speed;
+import carsimulator.Car;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -17,8 +18,9 @@ public class TerrainController implements Runnable {
     private final Speed speed;
     private final Location location;
     private final Direction direction;
-    private final BufferedImage img;
-
+    private BufferedImage img = null;
+    private final Car carModel;
+    
     @Override
     public void run() {
         while (true) {
@@ -35,14 +37,19 @@ public class TerrainController implements Runnable {
 
     }
 
-    public TerrainController(Speed speed, Direction direction, Location location) throws IOException {
+    public TerrainController(Speed speed, Direction direction, Location location, Car carModel) throws IOException {
         this.speed = speed;
         this.location = location;
         this.direction = direction;
+        this.carModel = carModel;
 
         // Load in the image
-        this.img = ImageIO.read(new File("Assets/map-small.png"));
-        
+        try {
+            this.img = ImageIO.read(getClass().getClassLoader().getResource("resources/map-small.png"));
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+                 
         // Kick off the terrain controller thread
         Thread t1 = new Thread(this);
         t1.setPriority(Thread.MAX_PRIORITY);
@@ -78,9 +85,10 @@ public class TerrainController implements Runnable {
     }
 
     private void handlePixelColour(Colour colour) {
+        System.out.println("Handling ");
         if (colour == Colour.BLUE) { // Water
             // Reset the car position
-            JOptionPane.showMessageDialog(null, "You crashed!  Position reset.");
+            carModel.isCrashed = true;
             this.location.setLocation(Location.start_positon_x, Location.start_position_y);
             this.direction.setDirection(3 * Math.PI / 2);
 
