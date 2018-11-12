@@ -2,7 +2,9 @@
 
 ## Build
 
-To build, use the following command
+To build you must install ant.
+
+To build, use the following command in this directory.
 
 ```
 ant -f . -Dnb.internal.action.name=rebuild clean jar
