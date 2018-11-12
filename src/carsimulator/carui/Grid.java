@@ -120,7 +120,7 @@ public class Grid extends JFrame implements Runnable {
     
     public String radsToCompassCoord(double x) {
         String directions[] = {"N", "NE", "E", "SE", "S", "SW", "W", "NW", "N"};
-        x = ((x * 180) / Math.PI);
+        x = ((x * 180) / Math.PI) + 90;
         
         return directions[(int)Math.round((((double)x % 360) / 45))];
     }
