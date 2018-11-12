@@ -25,7 +25,7 @@ public class EngineTemperature {
   * Return the current engine temperature
   @return temperature
   */
-  public double getInternalTemp()
+  public double getEngineTemp()
   {
       return this.EngineTemperature;
   }
