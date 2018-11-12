@@ -3,6 +3,8 @@ package carsimulator;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import carsimulator.carcontrols.InternalTemperatureControl;
+import carsimulator.carcontrols.EngineTemperature;
 
 /**
  * Car is data model of the car.
@@ -17,6 +19,8 @@ public class Car {
     protected Direction direction;
     protected Speed speed;
     protected Gas gas;
+    protected InternalTemperatureControl inTemp;
+    protected EngineTemperature engineTemp;
     public boolean isCrashed;
 
     /**
@@ -25,12 +29,14 @@ public class Car {
      * @param gas
      * @throws java.io.IOException
      */
-    public Car(Direction direction, Gas gas) throws IOException {
+    public Car(Direction direction, Gas gas, InternalTemperatureControl inTemp, EngineTemperature engineTemp) throws IOException {
         this.direction = direction;
         this.gas = gas;
         this.location = new Location(this);
         this.speed = new Speed();
         this.isCrashed = false;
+        this.inTemp = inTemp;
+        this.engineTemp = engineTemp;
 
         // Start updating the location
         Thread t = new Thread(location);
@@ -95,6 +101,7 @@ public class Car {
         logger.log(Level.INFO, "Direction: {0}", this.location);
         return this.direction.getDirection();
     }
+    
     /**
      * ******************************************
      * End of Getters and Setters ******************************************
