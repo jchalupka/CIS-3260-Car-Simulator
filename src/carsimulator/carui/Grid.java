@@ -117,6 +117,13 @@ public class Grid extends JFrame implements Runnable {
 
         this.img2_rotated = op.filter(this.img2, null);
     }
+    
+    public String radsToCompassCoord(double x) {
+        String directions[] = {"N", "NE", "E", "SE", "S", "SW", "W", "NW", "N"};
+        x = ((x * 180) / Math.PI);
+        
+        return directions[(int)Math.round((((double)x % 360) / 45))];
+    }
 
     public void paint(Graphics g) {
         g.drawImage(this.img, 0, 0, this);
@@ -127,6 +134,7 @@ public class Grid extends JFrame implements Runnable {
         g.drawString("Speed: " + String.format("%.1f", (carModel.getSpeed() * 10)) + " km/h", 800, 100);
         g.drawString("Internal Temperature: " + Double.toString(carModel.getInternalTemperature()), 800, 150);
         g.drawString("Engine Temperature: " + Double.toString(carModel.getEngineTemperature()), 800, 200);
+        g.drawString("Compass: " + radsToCompassCoord(carModel.getDirection()), 800, 250);
         
         if (carModel.isCrashed == true) {
             
