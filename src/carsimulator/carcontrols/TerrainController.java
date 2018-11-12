@@ -90,7 +90,7 @@ public class TerrainController implements Runnable {
             carModel.isCrashed = true;
             this.location.setLocation(Location.start_positon_x, Location.start_position_y);
             this.direction.setDirection(3 * Math.PI / 2);
-
+            this.speed.setSpeed((0.0));
         } else if (colour == Colour.GREEN) {
             this.speed.setSpeed(this.speed.getSpeed() + Speed.GRASS_DESCELERATION_SPEED);
         }
