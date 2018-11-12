@@ -21,7 +21,6 @@ public class CarControls {
         this.carUI = frame;
         this.carModel = carModel;
 
-        // TODO should probably be a car controls factory
         this.steering = new Steering(this.carModel.direction);
         Gas gas = new Gas(100, 0);
         this.gearbox = new GearBox(gas);
