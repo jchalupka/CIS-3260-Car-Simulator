@@ -2,7 +2,6 @@ package carsimulator;
 
 import java.awt.Point;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import static java.lang.Thread.sleep;
 import java.util.logging.Level;
@@ -12,7 +11,7 @@ import javax.imageio.ImageIO;
 public class Location extends Point implements Runnable {
 
     private final Car car;
-   private final BufferedImage img;
+    private final BufferedImage img;
 
     public static final int start_positon_x = 36;
     public static final int start_position_y = 682;
@@ -45,7 +44,8 @@ public class Location extends Point implements Runnable {
      *
      */
     private void updateLocation() {
-        int speed = this.car.getSpeed();
+        double speed = this.car.getSpeed();
+        System.out.println("speed " + speed);
         double direction = this.car.getDirection();
 
         double velocity_x = speed * Math.cos(direction);
@@ -60,6 +60,11 @@ public class Location extends Point implements Runnable {
         }
 
         this.car.speed.coast();
+        try {
+            sleep(70);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Location.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
@@ -67,7 +72,7 @@ public class Location extends Point implements Runnable {
         while (true) {
             updateLocation();
             try {
-                sleep((long) 0.5);
+                sleep((long) 1);
             } catch (InterruptedException ex) {
                 Logger.getLogger(Location.class.getName()).log(Level.SEVERE, null, ex);
             }

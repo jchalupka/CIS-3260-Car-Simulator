@@ -9,8 +9,8 @@ public class Pedals {
     // Simple logger to log events
     private static final Logger logger = Logger.getLogger(Pedals.class.getName());
 
-    public static final int BRAKE_DESCELERATION_SPEED = -4;
-    public static final int ACCELERATION_SPEED = 5;
+    public static final int BRAKE_DESCELERATION_SPEED = -10;
+    public static final double ACCELERATION_SPEED = 1;
 
     private final Speed speed;
 

@@ -54,7 +54,8 @@ public class Car {
     /**
      * setLocation sets the cars current location on the map.
      *
-     * @param location
+     * @param x
+     * @param y
      */
     public void setLocation(int x, int y) {
         this.location.x = x;
@@ -67,7 +68,7 @@ public class Car {
      *
      * @return
      */
-    public int getSpeed() {
+    public double getSpeed() {
         logger.log(Level.INFO, "Speed: {0}", this.speed);
         return this.speed.getSpeed();
     }

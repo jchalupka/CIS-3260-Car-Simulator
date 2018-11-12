@@ -85,7 +85,6 @@ public class TerrainController implements Runnable {
     }
 
     private void handlePixelColour(Colour colour) {
-        System.out.println("Handling ");
         if (colour == Colour.BLUE) {
             // Reset the car position
             carModel.isCrashed = true;
@@ -93,8 +92,7 @@ public class TerrainController implements Runnable {
             this.direction.setDirection(3 * Math.PI / 2);
 
         } else if (colour == Colour.GREEN) {
-            // Set the car's speed to 0.
-            this.speed.setSpeed(this.speed.getSpeed()/2);
+            this.speed.setSpeed(this.speed.getSpeed() + Speed.GRASS_DESCELERATION_SPEED);
         }
     }
 

@@ -11,9 +11,10 @@ public class Speed {
     private static final int MAX_SPEED = 100;
     private static final int MIN_SPEED = 0;
 
-    public static final int NATURAL_DESCELERATION_SPEED = -1;
-
-    private int speed;
+    public static final double NATURAL_DESCELERATION_SPEED = -0.5;
+    public static final double GRASS_DESCELERATION_SPEED = -0.05;
+    
+    private double speed;
 
     /**
      * Speed is the speed of the car.
@@ -33,12 +34,12 @@ public class Speed {
         return MIN_SPEED;
     }
 
-    public int getSpeed() {
+    public double getSpeed() {
         return speed;
     }
 
-    public void setSpeed(int speed) {
-        this.speed = speed;
+    public void setSpeed(double speed) {
+        this.speed = Math.max(MIN_SPEED, speed);
     }
     
     /**
@@ -47,8 +48,9 @@ public class Speed {
      *
      * @param speed_delta
      */
-    public void increaseSpeed(int speed_delta) {
+    public void increaseSpeed(double speed_delta) {
         logger.log(Level.INFO, "Increasing speed by {0}", speed_delta);
+        System.out.println("increasing speed by " + speed_delta);
         this.speed = Math.min(MAX_SPEED, this.speed + speed_delta);
     }
 
@@ -58,8 +60,9 @@ public class Speed {
      *
      * @param speed_delta
      */
-    public void decreaseSpeed(int speed_delta) {
+    public void decreaseSpeed(double speed_delta) {
         logger.log(Level.INFO, "Decreasing speed by {0}", speed_delta);
+        System.out.println("decreasing speed by " + speed_delta);
         this.speed = Math.max(MIN_SPEED, this.speed + speed_delta);
     }
 
