@@ -123,6 +123,8 @@ public class Grid extends JFrame implements Runnable {
         g.drawImage(this.img2_rotated, this.carModel.getLocation().x, this.carModel.getLocation().y, this);
         g.drawString("Gas: " + Integer.toString(carModel.getCurrentGasAmount()) + " / 100", 800, 50);
         g.drawString("Speed: " + Integer.toString(carModel.getSpeed()), 800, 100);
+        g.drawString("Internal Temperature: " + Double.toString(carModel.getInternalTemperature()), 800, 150);
+        g.drawString("Engine Temperature: " + Double.toString(carModel.getEngineTemperature()), 800, 200);
         
         if (carModel.isCrashed == true) {
             

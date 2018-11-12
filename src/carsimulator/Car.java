@@ -102,6 +102,14 @@ public class Car {
         return this.direction.getDirection();
     }
     
+    public double getInternalTemperature() {
+        return this.inTemp.getInternalTemp();
+    }
+    
+    public double getEngineTemperature() {
+        return this.engineTemp.getEngineTemp();
+    }
+    
     /**
      * ******************************************
      * End of Getters and Setters ******************************************
